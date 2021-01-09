@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.KuiziEntity;
+import com.example.demo.model.PyetjaEntity;
 import com.example.demo.repository.KuiziRepository;
+import com.example.demo.repository.PyetjaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,9 @@ public class HomeController {
     @Autowired
     private KuiziRepository kuiziRepository;
 
+    @Autowired
+    private PyetjaRepository pyetjaRepository;
+
     @RequestMapping("/")
     public String redirectToHome(){
 
@@ -28,6 +33,18 @@ public class HomeController {
         kuiziEntity.setKategoria("Java");
         kuiziEntity.setDataKuizit(new Date(millis));
         kuiziRepository.save(kuiziEntity);
+
+        PyetjaEntity pyetjaEntity = new PyetjaEntity();
+        pyetjaEntity.setPiket(4);
+        pyetjaEntity.setEmriPyetjes("Qka eshte java");
+        pyetjaEntity.setOpsioniA("Kurjga");
+        pyetjaEntity.setOpsioniB("D");
+        pyetjaEntity.setOpsioniC("f");
+        pyetjaEntity.setOpsioniD("y");
+        pyetjaEntity.setOpsioniSakt("D");
+        pyetjaEntity.setKuiziEntity(kuiziEntity);
+
+        pyetjaRepository.save(pyetjaEntity);
 
 
         return "home";

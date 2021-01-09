@@ -8,7 +8,7 @@ import java.util.Objects;
  */
 
 @Entity
-@Table(name = "Pyetja", schema = "dbo", catalog = "kuizDatabase")
+@Table(name = "Pyetja")
 public class PyetjaEntity {
 
     @Id

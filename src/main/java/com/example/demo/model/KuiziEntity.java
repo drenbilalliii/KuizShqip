@@ -9,7 +9,7 @@ import java.util.Objects;
  */
 
 @Entity
-@Table(name = "Kuizi", schema = "dbo", catalog = "kuizDatabase")
+@Table(name = "Kuizi")
 public class KuiziEntity {
 
     @Id
@@ -17,7 +17,7 @@ public class KuiziEntity {
     @Column(name = "KuiziID")
     private int kuiziId;
     @Basic
-    @Column(name = "EmriKuizit")
+    @Column(name = "emri_kuizit")
     private String emriKuizit;
     @Basic
     @Column(name = "datakuizit")

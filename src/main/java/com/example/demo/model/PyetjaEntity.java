@@ -11,25 +11,40 @@ import java.util.Objects;
 @Table(name = "Pyetja", schema = "dbo", catalog = "kuizDatabase")
 public class PyetjaEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int pyetjaId;
+    @Basic
+    @Column(name = "emripyetjes")
     private String emriPyetjes;
+    @Basic
+    @Column(name = "opsionia")
     private String opsioniA;
+    @Basic
+    @Column(name = "opsionib")
     private String opsioniB;
+    @Basic
+    @Column(name = "opsionic")
     private String opsioniC;
+    @Basic
+    @Column(name = "opsionid")
     private String opsioniD;
+    @Basic
+    @Column(name = "opsionisakt")
     private String opsioniSakt;
+    @Basic
+    @Column(name = "piket")
     private Integer piket;
+    @JoinColumn(name = "KuiziID", referencedColumnName = "KuiziID")
+    @ManyToOne(optional = false)
+    private KuiziEntity kuiziEntity;
 
     public PyetjaEntity() {
     }
 
-    public static void main(String[] args) {
 
 
-    }
 
-    @Id
-    @Column(name = "PyetjaID")
     public int getPyetjaId() {
         return pyetjaId;
     }
@@ -38,8 +53,7 @@ public class PyetjaEntity {
         this.pyetjaId = pyetjaId;
     }
 
-    @Basic
-    @Column(name = "EmriPyetjes")
+
     public String getEmriPyetjes() {
         return emriPyetjes;
     }
@@ -48,8 +62,7 @@ public class PyetjaEntity {
         this.emriPyetjes = emriPyetjes;
     }
 
-    @Basic
-    @Column(name = "OpsioniA")
+
     public String getOpsioniA() {
         return opsioniA;
     }
@@ -58,8 +71,7 @@ public class PyetjaEntity {
         this.opsioniA = opsioniA;
     }
 
-    @Basic
-    @Column(name = "OpsioniB")
+
     public String getOpsioniB() {
         return opsioniB;
     }
@@ -68,8 +80,7 @@ public class PyetjaEntity {
         this.opsioniB = opsioniB;
     }
 
-    @Basic
-    @Column(name = "OpsioniC")
+
     public String getOpsioniC() {
         return opsioniC;
     }
@@ -78,8 +89,7 @@ public class PyetjaEntity {
         this.opsioniC = opsioniC;
     }
 
-    @Basic
-    @Column(name = "OpsioniD")
+
     public String getOpsioniD() {
         return opsioniD;
     }
@@ -88,8 +98,7 @@ public class PyetjaEntity {
         this.opsioniD = opsioniD;
     }
 
-    @Basic
-    @Column(name = "OpsioniSakt")
+
     public String getOpsioniSakt() {
         return opsioniSakt;
     }
@@ -98,14 +107,21 @@ public class PyetjaEntity {
         this.opsioniSakt = opsioniSakt;
     }
 
-    @Basic
-    @Column(name = "Piket")
+
+
     public Integer getPiket() {
         return piket;
     }
 
     public void setPiket(Integer piket) {
         this.piket = piket;
+    }
+
+    public KuiziEntity getKuiziEntity(){
+        return kuiziEntity;
+    }
+    public void setKuiziEntity(KuiziEntity kuiziEntity){
+        this.kuiziEntity = kuiziEntity;
     }
 
     @Override

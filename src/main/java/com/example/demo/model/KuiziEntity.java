@@ -12,9 +12,18 @@ import java.util.Objects;
 @Table(name = "Kuizi", schema = "dbo", catalog = "kuizDatabase")
 public class KuiziEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "KuiziID")
     private int kuiziId;
+    @Basic
+    @Column(name = "EmriKuizit")
     private String emriKuizit;
+    @Basic
+    @Column(name = "datakuizit")
     private Date dataKuizit;
+    @Basic
+    @Column(name = "kategoria")
     private String kategoria;
 
     public KuiziEntity() {
@@ -25,8 +34,7 @@ public class KuiziEntity {
 
     }
 
-    @Id
-    @Column(name = "KuiziID")
+
     public int getKuiziId() {
         return kuiziId;
     }
@@ -35,8 +43,7 @@ public class KuiziEntity {
         this.kuiziId = kuiziId;
     }
 
-    @Basic
-    @Column(name = "EmriKuizit")
+
     public String getEmriKuizit() {
         return emriKuizit;
     }
@@ -45,8 +52,7 @@ public class KuiziEntity {
         this.emriKuizit = emriKuizit;
     }
 
-    @Basic
-    @Column(name = "DataKuizit")
+
     public Date getDataKuizit() {
         return dataKuizit;
     }
@@ -55,8 +61,7 @@ public class KuiziEntity {
         this.dataKuizit = dataKuizit;
     }
 
-    @Basic
-    @Column(name = "Kategoria")
+
     public String getKategoria() {
         return kategoria;
     }

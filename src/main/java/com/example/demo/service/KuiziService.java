@@ -5,11 +5,11 @@ import com.example.demo.model.KuiziEntity;
 
 public interface KuiziService {
 
-    KuiziEntity save(KuiziEntity kuiziEntity);
+    KuiziEntity save(KuiziEntity kuiziEntity) throws KuiziException;
 
     KuiziEntity find(Long id) throws KuiziException;
 
-    KuiziEntity update(KuiziEntity newKuizi);
+    KuiziEntity update(KuiziEntity newKuizi) throws KuiziException;
 
-    void delete(KuiziEntity kuiziEntity);
+    void delete(KuiziEntity kuiziEntity) throws KuiziException;
 }

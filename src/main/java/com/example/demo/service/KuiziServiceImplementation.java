@@ -42,7 +42,7 @@ public class KuiziServiceImplementation implements KuiziService {
 
         KuiziEntity kuiziEntity = kuiziRepository.getOne(id);
 
-        if(kuiziEntity == null){
+        if(kuiziEntity == null) {
             logger.error(id + " nuk gjendet");
             throw new KuiziException("Kuizi me id : " + id + " nuk u gjendet ne sistem!");
         }

@@ -14,4 +14,6 @@ public interface KuiziRepository extends JpaRepository<KuiziEntity,Long> {
 
     @Override
     <S extends KuiziEntity> S save(S s);
+
+
 }

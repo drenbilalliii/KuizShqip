@@ -2,13 +2,13 @@ package com.example.demo.service;
 
 import com.example.demo.exceptions.PyetjaException;
 import com.example.demo.model.PyetjaEntity;
-import com.example.demo.repository.KuiziRepository;
+
 import com.example.demo.repository.PyetjaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 /**
@@ -63,7 +63,6 @@ public class PyetjaServiceImplementation implements PyetjaService{
 
     @Override
     public void delete(PyetjaEntity pyetjaEntity) throws PyetjaException {
-
     }
 
     @Override
@@ -78,5 +77,29 @@ public class PyetjaServiceImplementation implements PyetjaService{
         }
 
         return pyetjaEntityList;
+    }
+
+    @Override
+    public List<PyetjaEntity> findAllPergjigjetByQuizID(Long id) throws PyetjaException {
+        List<PyetjaEntity> pergjigjetList;
+
+        pergjigjetList = pyetjaRepository.findAllPergjigjetByQuizID(id);
+
+        if(pergjigjetList.size() == 0){
+            logger.error("Nuk u kthyen asnje pergjigje gjatesia e listes eshte 0");
+            throw new PyetjaException("Nuk u kthyen asnje pergjigje gjatesia e listes eshte 0\"");
+        }
+
+        return pergjigjetList;
+    }
+
+    @Override
+    public List<PyetjaEntity> findThreePytjetMeMaxPike() throws PyetjaException {
+        return pyetjaRepository.findThreePytjetMeMaxPike();
+    }
+
+    @Override
+    public List<PyetjaEntity> findThreePytjetMeMaxPikeByQuizID(Long id) throws PyetjaException {
+        return pyetjaRepository.findThreePytjetMeMaxPikeByQuizID(id);
     }
 }

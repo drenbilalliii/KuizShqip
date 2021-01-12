@@ -1,9 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.exceptions.PyetjaException;
 import com.example.demo.model.KuiziEntity;
 import com.example.demo.model.PyetjaEntity;
 import com.example.demo.repository.KuiziRepository;
 import com.example.demo.repository.PyetjaRepository;
+import com.example.demo.service.PyetjaService;
+import com.example.demo.service.PyetjaServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +27,10 @@ public class HomeController {
 
     @Autowired
     private PyetjaRepository pyetjaRepository;
+
+
+    @Autowired
+    private PyetjaService pyetjaService;
 
     @RequestMapping("/")
     public String redirectToHome(){
@@ -52,8 +59,12 @@ public class HomeController {
     }
 
     @RequestMapping("/test")
-    public String f(){
+    public String f() throws PyetjaException {
 
+
+        List<PyetjaEntity> p = pyetjaService.findThreePytjetMeMaxPike();
+
+        System.out.println(p);
         return "404NotFound";
     }
 

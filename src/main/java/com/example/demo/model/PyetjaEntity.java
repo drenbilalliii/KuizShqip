@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -13,6 +15,7 @@ public class PyetjaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pyetja_id")
     private int pyetjaId;
     @Basic
     @Column(name = "emripyetjes")
@@ -137,6 +140,11 @@ public class PyetjaEntity {
                 Objects.equals(opsioniD, that.opsioniD) &&
                 Objects.equals(opsioniSakt, that.opsioniSakt) &&
                 Objects.equals(piket, that.piket);
+    }
+
+    @Override
+    public String toString() {
+        return "Pyetja id : " + pyetjaId + " Pyetja : " + emriPyetjes;
     }
 
     @Override

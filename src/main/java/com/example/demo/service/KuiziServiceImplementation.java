@@ -6,11 +6,14 @@ import com.example.demo.repository.KuiziRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author Dren Bilalli on 1/10/2021
  */
-
+@Service
 public class KuiziServiceImplementation implements KuiziService {
 
 
@@ -60,5 +63,18 @@ public class KuiziServiceImplementation implements KuiziService {
     public void delete(KuiziEntity kuiziEntity) {
 
         //me vone
+    }
+
+    @Override
+    public List<KuiziEntity> TreKuizetEFundit() throws KuiziException {
+
+        List<KuiziEntity> lista3KuizFundit =  kuiziRepository.TreKuizetEFundit();
+
+        if(lista3KuizFundit.size() == 0){
+            logger.error("Nuk ka asnje kuiz ne sistem");
+            throw new KuiziException("Nuk u kthye asnje rezultat ");
+        }
+
+        return lista3KuizFundit;
     }
 }

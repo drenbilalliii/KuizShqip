@@ -16,4 +16,6 @@ public interface KuiziService {
     void delete(KuiziEntity kuiziEntity) throws KuiziException;
 
     List<KuiziEntity> TreKuizetEFundit() throws KuiziException;
+
+    List<KuiziEntity> teGjitheKuizet() throws KuiziException;
 }

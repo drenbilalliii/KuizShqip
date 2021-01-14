@@ -1,14 +1,17 @@
 package com.example.demo.controller;
 
+import com.example.demo.exceptions.KuiziException;
 import com.example.demo.exceptions.PyetjaException;
 import com.example.demo.model.KuiziEntity;
 import com.example.demo.model.PyetjaEntity;
 import com.example.demo.repository.KuiziRepository;
 import com.example.demo.repository.PyetjaRepository;
+import com.example.demo.service.KuiziService;
 import com.example.demo.service.PyetjaService;
 import com.example.demo.service.PyetjaServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.Date;
@@ -23,37 +26,19 @@ public class HomeController {
 
 
     @Autowired
-    private KuiziRepository kuiziRepository;
+    private KuiziService kuiziService;
 
-    @Autowired
-    private PyetjaRepository pyetjaRepository;
 
 
     @Autowired
     private PyetjaService pyetjaService;
 
     @RequestMapping("/")
-    public String redirectToHome(){
+    public String redirectToHome(Model model) throws KuiziException {
 
-        long millis=System.currentTimeMillis();
-        KuiziEntity kuiziEntity = new KuiziEntity();
-        kuiziEntity.setEmriKuizit("Testime");
-        kuiziEntity.setKategoria("Java");
-        kuiziEntity.setDataKuizit(new Date(millis));
-        kuiziRepository.save(kuiziEntity);
+        List<KuiziEntity> listKuizEntity = kuiziService.teGjitheKuizet();
 
-        PyetjaEntity pyetjaEntity = new PyetjaEntity();
-        pyetjaEntity.setPiket(4);
-        pyetjaEntity.setEmriPyetjes("Qka eshte java");
-        pyetjaEntity.setOpsioniA("Kurjga");
-        pyetjaEntity.setOpsioniB("D");
-        pyetjaEntity.setOpsioniC("f");
-        pyetjaEntity.setOpsioniD("y");
-        pyetjaEntity.setOpsioniSakt("D");
-        pyetjaEntity.setKuiziEntity(kuiziEntity);
-
-        pyetjaRepository.save(pyetjaEntity);
-
+        model.addAttribute("listaKuiz",listKuizEntity);
 
         return "home";
     }

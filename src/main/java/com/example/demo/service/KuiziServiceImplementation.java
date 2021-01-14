@@ -77,4 +77,17 @@ public class KuiziServiceImplementation implements KuiziService {
 
         return lista3KuizFundit;
     }
+
+    @Override
+    public List<KuiziEntity> teGjitheKuizet() throws KuiziException {
+
+        List<KuiziEntity> teGjitheKuizet = kuiziRepository.findAll();
+
+        if(teGjitheKuizet.size() == 0){
+            logger.error("Nuk ka asnje kuiz ne sistem");
+            throw new KuiziException("Nuk u kthye asnje rezultat");
+        }
+        return teGjitheKuizet;
+    }
+
 }

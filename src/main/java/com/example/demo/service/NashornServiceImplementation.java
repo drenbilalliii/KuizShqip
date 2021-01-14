@@ -20,6 +20,7 @@ public class NashornServiceImplementation implements NashornService {
     public String ekzekutoKodin(String kodi,String metoda) throws NashornException, ScriptException, NoSuchMethodException {
 
         Invocable invocable = (Invocable)scriptEngine;
+        scriptEngine.eval(kodi);
 
        Object o = invocable.invokeFunction(metoda,null);
 

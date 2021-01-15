@@ -6,8 +6,11 @@ import com.example.demo.repository.KuiziRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +23,7 @@ public class KuiziServiceImplementation implements KuiziService {
     private static final Logger logger = LoggerFactory.getLogger(KuiziServiceImplementation.class); // per debbuging
 
     private KuiziRepository kuiziRepository;
+    private List<KuiziEntity> kuiziEntityListFour = new ArrayList<>();
 
     @Autowired
     private KuiziService kuiziService;
@@ -94,5 +98,22 @@ public class KuiziServiceImplementation implements KuiziService {
     public Integer countAllKuizet() throws KuiziException {
         return  kuiziRepository.countAllKuizet();
     }
+
+    @Override
+    @PostConstruct
+    @Scheduled(cron = "0 */30 * ? * *")
+    public void updateList30Min() throws KuiziException {
+
+        kuiziEntityListFour = kuiziRepository.KaterRandomKuize();
+    }
+
+    @Override
+    public List<KuiziEntity> KaterRandomKuize() throws KuiziException {
+
+        return kuiziEntityListFour;
+    }
+
+
+
 
 }

@@ -20,4 +20,8 @@ public interface KuiziService {
     List<KuiziEntity> teGjitheKuizet() throws KuiziException;
 
     public Integer countAllKuizet() throws KuiziException;
+
+    public List<KuiziEntity> KaterRandomKuize() throws KuiziException;
+
+    void updateList30Min() throws KuiziException;
 }

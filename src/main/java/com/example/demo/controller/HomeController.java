@@ -11,6 +11,7 @@ import com.example.demo.service.KuiziService;
 import com.example.demo.service.PyetjaService;
 import com.example.demo.service.PyetjaServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,16 +29,18 @@ public class HomeController {
 
     @Autowired
     private KuiziService kuiziService;
+
     @Autowired
     private PyetjaService pyetjaService;
+
     @Autowired
     private KuizeTeLuajturaService kuizeTeLuajturaService;
+
 
     @RequestMapping("/")
     public String redirectToHome(Model model) throws KuiziException, PyetjaException {
 
-        List<KuiziEntity> listKuizEntity = kuiziService.teGjitheKuizet();
-
+        List<KuiziEntity> listKuizEntity = kuiziService.KaterRandomKuize();
         Integer numriITeGjithaKuizeve = kuiziService.countAllKuizet();
         Integer numriITeGjithaPytjeve = pyetjaService.getNumrinEpyetjeve();
         Integer numriIKuizeveTeLuajtura = kuizeTeLuajturaService.getKuizeTeLuajtura();

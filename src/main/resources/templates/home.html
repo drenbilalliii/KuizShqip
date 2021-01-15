@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Kuiz Online</title>
+    <title>Medieval Kahoot</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -15,25 +15,26 @@
     <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
     <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Online Quize</a>
+        <a class="navbar-brand" href="#">Medieval Kahoot</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
+                    <a class="nav-link" th:href="@{/}">Home
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/allQuizes}">Quizes</a>
+                    <a class="nav-link" th:href="@{/allQuizes}">Quizzes</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="login.html">Login</a>
@@ -45,14 +46,14 @@
 
 <div class="container">
     <header class="jumbotron my-4">
-        <h1 class="display-3">Kuizi Online </h1>
+        <h1 class="display-3">Medieval Kahoot</h1>
     <br><br>
         <div class="row">
             <div class="col-xl-3 col-sm-6 mb-3">
                 <div class="card text-white bg-primary o-hidden h-100">
                     <div class="card-body">
                         <div class="card-body-icon">
-                            <i class="fa fa-fw fa-comments"></i>
+                            <i class="fa fa-fw fa fa-play"></i>
                         </div>
                         <div class="mr-5" th:text="${numriIKuizeve + ' Kuiz'}"></div>
                     </div>
@@ -68,7 +69,7 @@
                 <div class="card text-white bg-warning o-hidden h-100">
                     <div class="card-body">
                         <div class="card-body-icon">
-                            <i class="fa fa-fw fa-list"></i>
+                            <i class="fa fa-question"></i>
                         </div>
                         <div class="mr-5" th:text="${numriIPyetjeve + ' Pyetje'}"></div>
                     </div>
@@ -84,7 +85,7 @@
                 <div class="card text-white bg-success o-hidden h-100">
                     <div class="card-body">
                         <div class="card-body-icon">
-                            <i class="fa fa-fw fa-shopping-cart"></i>
+                            <i class="fa fa-fw fa fa-play"></i>
                         </div>
                         <div class="mr-5"th:text="${numriIKuizeveLuajtura + ' Kuize të luajtura'}"></div>
                     </div>
@@ -119,6 +120,11 @@
     </header>
     <div class="row justify-content-center">
     <h1 class="display-4">Katër kurse të rastësishme</h1><br>
+        <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Nese keni probleme në përzgjedhjen e një kuizi për të
+luajtur ateherë për të bërë këtë punë më lehtë ne e kemi bërë që në këtë pjesë të gjenerohen 5 kuize të ndryshme për cdo
+30 minuta ku pastaj ju mundeni që të zgjedheni një dhe të filloni lojën">
+           Info
+        </button>
 
     </div>
    
@@ -128,56 +134,36 @@
         <div class="col-lg-3 col-md-6 mb-4" th:each="kuizi : ${listaKuiz}" >
             <div class="card h-100"  >
                 <!--<img class="card-img-top" src="http://placehold.it/500x325" alt="">-->
+                <div class="card-header">
+                    <h4 class="card-title" th:text="${kuizi.getEmriKuizit()}"></h4>
+                </div>
                 <div class="card-body">
-                    <h4 class="card-title">Titulli i Quizit</h4>
-                    <p class="card-text" th:text="${kuizi.getEmriKuizit()}"> </p>
+                    <p class="card-text" th:text="${'Kategoria : ' + kuizi.getKategoria()}"> </p>
+                    <p class="card-text" th:text="${'Data : ' + kuizi.getDataKuizit()}"> </p>
                 </div>
 
                 <div class="card-footer">
-                    <a th:href="@{home/playQuiz/{id}(id=${kuizi.getKuiziId()})}" class="btn btn-primary">Play Quize</a>
+                    <a th:href="@{home/playQuiz/{id}(id=${kuizi.getKuiziId()})}" class="btn btn-outline-success"><i class="fa fa-fw fa fa-play"></i>Fillo Kuizin</a>
                 </div>
             </div>
         </div>
 
 
     </div>
-
-    <div class="row justify-content-center">
-        <h1 class="display-4">Kurset e mbajtura</h1><br>
-    </div>
-
-    <div class="row text-center">
-
-        <div class="col-lg-3 col-md-6 mb-4" th:each="kuizi : ${listaKuiz}" >
-            <div class="card h-100"  >
-                <!--<img class="card-img-top" src="http://placehold.it/500x325" alt="">-->
-                <div class="card-body">
-                    <h4 class="card-title">Titulli i Quizit</h4>
-
-                    <p class="card-text" th:text="${kuizi.getEmriKuizit()}"> </p>
-                </div>
-
-                <div class="card-footer">
-                    <a th:href="@{home/playQuiz/{id}(id=${kuizi.getKuiziId()})}" class="btn btn-primary">Play Quize</a>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-    <!-- /.row -->
-
 </div>
-<!-- /.container -->
 
-<!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+        <p class="m-0 text-center text-white">Copyright &copy; Medieval Kahoot 2021</p>
     </div>
     <!-- /.container -->
 </footer>
 
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -186,17 +172,5 @@
 
 </html>
 
-<!--<div class="container">
-    <div class="row mt-5 justify-content-center" >
-        <div class="card card-custom mx-2 mb-3" th:each="emrat : ${ListaMeEmra}"> >
-            <a href="https://www.netflix.com/fr/">
-                <h1 th:text="${emrat.length()}"></h1>
-                <img src="https://cdn1.iconfinder.com/data/icons/metro-ui-dock-icon-set&#45;&#45;icons-by-dakirby/256/Netflix.png" alt="" class="card-img">
-            </a>
-        </div>
-    </div>
-    </div>
-
-<a href="index.html"> click here </a>-->
 </body>
 </html>

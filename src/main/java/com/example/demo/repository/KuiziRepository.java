@@ -24,4 +24,7 @@ public interface KuiziRepository extends JpaRepository<KuiziEntity,Long> {
 
     @Query(value = "select count(*) from Kuizi",nativeQuery = true)
     public Integer countAllKuizet();
+
+    @Query(value = "SELECT TOP 4 * FROM Kuizi ORDER BY NEWID()",nativeQuery = true)
+    public List<KuiziEntity> KaterRandomKuize();
 }

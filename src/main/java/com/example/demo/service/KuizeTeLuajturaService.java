@@ -14,6 +14,8 @@ public interface KuizeTeLuajturaService {
     KuizeTeLuajturaEntity update(KuizeTeLuajturaEntity newKuizi) throws KuiziException;
 
     void delete(KuizeTeLuajturaEntity kuizeTeLuajturaEntity) throws KuiziException;
+
+    Integer getKuizeTeLuajtura() throws KuiziException;
 }
 
 

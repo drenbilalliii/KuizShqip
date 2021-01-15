@@ -31,4 +31,6 @@ public interface PyetjaService {
 
     List<PyetjaEntity> findThreePytjetMeMaxPikeByQuizID(Long id) throws PyetjaException;
 
+    public Integer getNumrinEpyetjeve() throws PyetjaException;
+
 }

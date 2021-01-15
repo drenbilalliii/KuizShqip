@@ -18,4 +18,6 @@ public interface KuiziService {
     List<KuiziEntity> TreKuizetEFundit() throws KuiziException;
 
     List<KuiziEntity> teGjitheKuizet() throws KuiziException;
+
+    public Integer countAllKuizet() throws KuiziException;
 }

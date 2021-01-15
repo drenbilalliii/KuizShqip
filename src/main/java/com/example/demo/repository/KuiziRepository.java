@@ -22,5 +22,6 @@ public interface KuiziRepository extends JpaRepository<KuiziEntity,Long> {
     @Query(value ="select top 3 * from Kuizi k order by k.KuiziID DESC",nativeQuery = true)
     public List<KuiziEntity> TreKuizetEFundit() throws KuiziException;
 
-
+    @Query(value = "select count(*) from Kuizi",nativeQuery = true)
+    public Integer countAllKuizet();
 }

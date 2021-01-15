@@ -90,4 +90,9 @@ public class KuiziServiceImplementation implements KuiziService {
         return teGjitheKuizet;
     }
 
+    @Override
+    public Integer countAllKuizet() throws KuiziException {
+        return  kuiziRepository.countAllKuizet();
+    }
+
 }

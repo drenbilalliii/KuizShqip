@@ -29,5 +29,8 @@ public interface PyetjaRepository extends JpaRepository<PyetjaEntity,Long> {
     @Query(value = "SELECT TOP 3 * from Pyetja p where p.KuiziID = ?1 ORDER BY p.Piket DESC",nativeQuery = true)
     List<PyetjaEntity> findThreePytjetMeMaxPikeByQuizID(Long id) throws PyetjaException;
 
+    @Query(value = "SELECT count(*) from Pyetja",nativeQuery = true)
+    public Integer getNumrinEpyetjeve();
+
 
 }

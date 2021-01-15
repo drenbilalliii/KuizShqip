@@ -104,4 +104,9 @@ public class PyetjaServiceImplementation implements PyetjaService{
     public List<PyetjaEntity> findThreePytjetMeMaxPikeByQuizID(Long id) throws PyetjaException {
         return pyetjaRepository.findThreePytjetMeMaxPikeByQuizID(id);
     }
+
+    @Override
+    public Integer getNumrinEpyetjeve() throws PyetjaException {
+        return pyetjaRepository.getNumrinEpyetjeve();
+    }
 }

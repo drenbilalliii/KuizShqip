@@ -55,4 +55,9 @@ public class KuizeTeLuajturaServiceImplementation implements KuizeTeLuajturaServ
     public void delete(KuizeTeLuajturaEntity kuizeTeLuajturaEntity) throws KuiziException {
 
     }
+
+    @Override
+    public Integer getKuizeTeLuajtura() throws KuiziException {
+        return kuizeTeLuajturaRepository.getKuizeTeLuajtura();
+    }
 }

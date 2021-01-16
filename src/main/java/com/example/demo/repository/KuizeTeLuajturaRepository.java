@@ -13,4 +13,7 @@ public interface KuizeTeLuajturaRepository extends JpaRepository<KuizeTeLuajtura
 
     @Query(value = "select count(*) from KuizeTeLuajtura ",nativeQuery = true)
     public Integer getKuizeTeLuajtura();
+
+    @Query(value = "select count(*) from KuizeTeLuajtura where KuiziID  = ?1 and Piket < ?2",nativeQuery = true)
+    public Integer countSaNjerzKanMePakPike(Integer KuiziID,Integer piket);
 }

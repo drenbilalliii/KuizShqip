@@ -16,6 +16,8 @@ public interface KuizeTeLuajturaService {
     void delete(KuizeTeLuajturaEntity kuizeTeLuajturaEntity) throws KuiziException;
 
     Integer getKuizeTeLuajtura() throws KuiziException;
+
+    Integer countSaNjerzKanMePakPike(Integer kuiziID,Integer pike) throws KuiziException;
 }
 
 

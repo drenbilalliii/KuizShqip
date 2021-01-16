@@ -60,4 +60,10 @@ public class KuizeTeLuajturaServiceImplementation implements KuizeTeLuajturaServ
     public Integer getKuizeTeLuajtura() throws KuiziException {
         return kuizeTeLuajturaRepository.getKuizeTeLuajtura();
     }
+
+
+    @Override
+    public Integer countSaNjerzKanMePakPike(Integer kuiziID, Integer pike) throws KuiziException {
+        return kuizeTeLuajturaRepository.countSaNjerzKanMePakPike(kuiziID,pike);
+    }
 }

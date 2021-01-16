@@ -51,14 +51,18 @@ public class QuizHandlerController {
     public String userTookQuiz(@RequestParam(value = "Opsioni",defaultValue = "") List<String>pergjigja
                                ,@RequestParam(value = "ID",defaultValue = " ")String ID,Model model) throws PyetjaException, KuiziException {
 
-        List<PyetjaEntity> lista = pyetjaService.findAllPergjigjetByQuizID(Integer.parseInt(ID));
+
+        Integer IDQuiz = Integer.parseInt(ID);
+        List<PyetjaEntity> lista = pyetjaService.findAllPergjigjetByQuizID(IDQuiz);
 
 
         int countPiket = kuiziService.countPergjigjenESakta(pergjigja,lista);
 
-
+        int saPersonaMbrapa = kuizeTeLuajturaService.countSaNjerzKanMePakPike(IDQuiz,countPiket);
 
         System.out.println("Keni : " + countPiket + " pike");
+        model.addAttribute("countPiket",countPiket);
+        model.addAttribute("saPersonaMbrapa",saPersonaMbrapa);
 
 
         return "displayUserPoints";

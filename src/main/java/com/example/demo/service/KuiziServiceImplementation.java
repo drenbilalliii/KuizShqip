@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.exceptions.KuiziException;
 import com.example.demo.model.KuiziEntity;
+import com.example.demo.model.PyetjaEntity;
 import com.example.demo.repository.KuiziRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,10 +12,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -140,6 +139,19 @@ public class KuiziServiceImplementation implements KuiziService {
     @Override
     public String getEmriKuizitByID(Long id) throws KuiziException {
         return kuiziRepository.getEmriKuizitByID(id);
+    }
+
+    @Override
+    public int countPergjigjenESakta(List<String> userPergjigje, List<PyetjaEntity> pyetjaEntities) throws KuiziException {
+
+        int piketShuma = 0;
+        for(int i=0;i<userPergjigje.size();i++){
+            if(userPergjigje.get(i).equals(pyetjaEntities.get(i).getOpsioniSakt())){
+                piketShuma+=pyetjaEntities.get(i).getPiket();
+            }
+        }
+        return piketShuma;
+
     }
 
 

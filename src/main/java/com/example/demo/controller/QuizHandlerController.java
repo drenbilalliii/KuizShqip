@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.exceptions.KuiziException;
 import com.example.demo.exceptions.PyetjaException;
 import com.example.demo.model.PyetjaEntity;
+import com.example.demo.service.KuizeTeLuajturaService;
 import com.example.demo.service.KuiziService;
 import com.example.demo.service.PyetjaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class QuizHandlerController {
     @Autowired
     private KuiziService kuiziService;
 
+    @Autowired
+    KuizeTeLuajturaService kuizeTeLuajturaService;
+
 
     @GetMapping("home/playQuiz/{id}")
     public String displayTheQuiz(@PathVariable("id") Long id, Model model) throws PyetjaException, KuiziException {
@@ -45,15 +49,19 @@ public class QuizHandlerController {
 
     @PostMapping("/takeKuiz/userTakesIt")
     public String userTookQuiz(@RequestParam(value = "Opsioni",defaultValue = "") List<String>pergjigja
-                               ) throws PyetjaException {
+                               ,@RequestParam(value = "ID",defaultValue = " ")String ID,Model model) throws PyetjaException, KuiziException {
 
-        List<String> lista = pyetjaService.findAllPergjigjetByQuizID(23);
+        List<PyetjaEntity> lista = pyetjaService.findAllPergjigjetByQuizID(Integer.parseInt(ID));
 
-        System.out.println(lista);
+
+        int countPiket = kuiziService.countPergjigjenESakta(pergjigja,lista);
+
+
+
+        System.out.println("Keni : " + countPiket + " pike");
 
 
         return "displayUserPoints";
-
 
 
     }

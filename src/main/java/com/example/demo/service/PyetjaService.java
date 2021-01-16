@@ -25,7 +25,7 @@ public interface PyetjaService {
 
     List<PyetjaEntity> findAllByQuizID(Long id) throws PyetjaException;
 
-    List<String> findAllPergjigjetByQuizID(Integer id) throws PyetjaException;
+    List<PyetjaEntity> findAllPergjigjetByQuizID(Integer id) throws PyetjaException;
 
     List<PyetjaEntity> findThreePytjetMeMaxPike() throws PyetjaException;
 

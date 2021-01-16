@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.Date;
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -38,15 +39,17 @@ public class HomeController {
 
 
     @RequestMapping("/")
-    public String redirectToHome(Model model) throws KuiziException, PyetjaException {
+    public String redirectToHome(Model model) throws KuiziException, PyetjaException, ParseException {
 
         List<KuiziEntity> listKuizEntity = kuiziService.KaterRandomKuize();
+        List<KuiziEntity> listKuizEntitySot = kuiziService.katerKuizetEDatesSotshme();
         Integer numriITeGjithaKuizeve = kuiziService.countAllKuizet();
         Integer numriITeGjithaPytjeve = pyetjaService.getNumrinEpyetjeve();
         Integer numriIKuizeveTeLuajtura = kuizeTeLuajturaService.getKuizeTeLuajtura();
 
 
         model.addAttribute("listaKuiz",listKuizEntity);
+        model.addAttribute("listaKuizSot",listKuizEntitySot);
         model.addAttribute("numriIKuizeve",numriITeGjithaKuizeve);
         model.addAttribute("numriIPyetjeve",numriITeGjithaKuizeve);
         model.addAttribute("numriIKuizeveLuajtura",numriIKuizeveTeLuajtura);

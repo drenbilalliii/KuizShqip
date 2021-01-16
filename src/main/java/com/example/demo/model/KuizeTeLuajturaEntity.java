@@ -16,9 +16,11 @@ public class KuizeTeLuajturaEntity {
     @JoinColumn(name = "KuiziID", referencedColumnName = "KuiziID")
     @ManyToOne(optional = false)
     private KuiziEntity kuiziEntity;
+    @Basic
+    @Column(name = "PIKET")
+    private Integer piket;
 
-    @Id
-    @Column(name = "KuizeTeLuajturaID")
+
     public int getKuizeTeLuajturaId() {
         return kuizeTeLuajturaId;
     }
@@ -34,6 +36,22 @@ public class KuizeTeLuajturaEntity {
 
     public void setEmriLojtarit(String emriLojtarit) {
         this.emriLojtarit = emriLojtarit;
+    }
+
+    public KuiziEntity getKuiziEntity() {
+        return kuiziEntity;
+    }
+
+    public void setKuiziEntity(KuiziEntity kuiziEntity) {
+        this.kuiziEntity = kuiziEntity;
+    }
+
+    public Integer getPiket() {
+        return piket;
+    }
+
+    public void setPiket(Integer piket) {
+        this.piket = piket;
     }
 
     @Override

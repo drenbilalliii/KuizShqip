@@ -10,7 +10,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -101,11 +105,43 @@ public class KuiziServiceImplementation implements KuiziService {
 
     @Override
     @PostConstruct
-    @Scheduled(cron = "0 */30 * ? * *")
+    @Scheduled(cron = "0 */15 * ? * *")
     public void updateList30Min() throws KuiziException {
 
         kuiziEntityListFour = kuiziRepository.KaterRandomKuize();
     }
+
+    @Override
+    public List<KuiziEntity> teGjitheKuizetJavaScript() throws KuiziException {
+        List<KuiziEntity> teGjitheKuizet = kuiziRepository.gjejKuizetJavaScript();
+
+        if(teGjitheKuizet.size() == 0){
+            logger.error("Nuk ka asnje kuiz ne sistem");
+            throw new KuiziException("Nuk u kthye asnje rezultat");
+        }
+        return teGjitheKuizet;
+    }
+
+    @Override
+    public List<KuiziEntity> katerKuizetEDatesSotshme() throws KuiziException, ParseException {
+
+
+
+        List<KuiziEntity> teGjitheKuizet = kuiziRepository.findByDataSotshme(LocalDate.now());
+
+
+        if(teGjitheKuizet.size() == 0){
+            logger.error("Nuk ka asnje kuiz ne sistem");
+            throw new KuiziException("Nuk u kthye asnje rezultat");
+        }
+        return teGjitheKuizet;
+    }
+
+    @Override
+    public String getEmriKuizitByID(Long id) throws KuiziException {
+        return kuiziRepository.getEmriKuizitByID(id);
+    }
+
 
     @Override
     public List<KuiziEntity> KaterRandomKuize() throws KuiziException {

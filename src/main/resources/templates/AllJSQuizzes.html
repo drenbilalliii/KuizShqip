@@ -19,33 +19,34 @@
 </head>
 <body>
 
+<!-- Navigation -->
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">Medieval Kahoot</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" th:href="@{/}">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/allQuizes}">Quizzes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/allJsQuizzes}" > <i class="fa fa-fire"></i>JS Quizzes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.html">Login</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+
+        <a class="navbar-brand" href="#">Medieval Kahoot</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/allQuizes}">Quizzes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/allJsQuizzes}" > <i class="fa fa-fire"></i>JS Quizzes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">Login</a>
+                </li>
+            </ul>
+
+    </div>
+</nav>
 
 
     <div class="row justify-content-center">
@@ -55,15 +56,12 @@
         <h1 class="display-4"></h1><br>
     </div>
     <div class="row justify-content-center">
-        <h1 class="display-4">Te gjithe</h1><br>
+        <h1 class="display-4">Kuize Te JavaScript</h1><br>
     </div>
 
-
-
-    <!-- Page Features -->
     <div class="row text-center">
-        <div class="col-lg-3 col-md-6 mb-4" th:each="kuizi : ${listaMeKuize}" >
-            <div class="card h-100">
+        <div class="col-lg-3 col-md-6 mb-4" th:each="kuizi : ${listaMeKuizeJs}" >
+            <div class="card h-100"  >
                 <!--<img class="card-img-top" src="http://placehold.it/500x325" alt="">-->
                 <div class="card-header">
                     <h4 class="card-title" th:text="${kuizi.getEmriKuizit()}"></h4>
@@ -74,14 +72,14 @@
                 </div>
 
                 <div class="card-footer">
-                    <a th:href="@{home/playQuiz/{id}(id=${kuizi.getKuiziId()})}" class="btn btn-outline-success"><i class="fa fa-fw fa fa-play"></i>Fillo Kuizin</a>
+                    <a th:href="@{home/playJSQuiz/{id}(id=${kuizi.getKuiziId()})}" class="btn btn-outline-success"><i class="fa fa-fw fa fa-play"></i>Fillo Kuizin</a>
                 </div>
             </div>
         </div>
-
     </div>
 
 </div>
-    </div>
+</div>
+</div>
 </body>
 </html>

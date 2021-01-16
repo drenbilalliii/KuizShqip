@@ -1,13 +1,16 @@
 package com.example.demo.controller;
 
+import com.example.demo.exceptions.KuiziException;
 import com.example.demo.exceptions.PyetjaException;
 import com.example.demo.model.PyetjaEntity;
+import com.example.demo.service.KuiziService;
 import com.example.demo.service.PyetjaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -21,14 +24,38 @@ public class QuizHandlerController {
     @Autowired
     private PyetjaService pyetjaService;
 
-    @RequestMapping("home/playQuiz/{id}")
-    public String displayTheQuiz(@PathVariable("id") Long id) throws PyetjaException {
+    @Autowired
+    private KuiziService kuiziService;
+
+
+    @GetMapping("home/playQuiz/{id}")
+    public String displayTheQuiz(@PathVariable("id") Long id, Model model) throws PyetjaException, KuiziException {
 
        List<PyetjaEntity> listaPytjesh =  pyetjaService.findAllByQuizID(id);
+       String emriKuizit = kuiziService.getEmriKuizitByID(id);
+
+        Collections.shuffle(listaPytjesh);
+        model.addAttribute("listaPytjesh",listaPytjesh);
+        model.addAttribute("emriKuizit",emriKuizit);
 
         System.out.println(listaPytjesh);
 
-        return "home";
+        return "takeKuiz";
+    }
+
+    @PostMapping("/takeKuiz/userTakesIt")
+    public String userTookQuiz(@RequestParam(value = "Opsioni",defaultValue = "") List<String>pergjigja
+                               ) throws PyetjaException {
+
+        List<String> lista = pyetjaService.findAllPergjigjetByQuizID(23);
+
+        System.out.println(lista);
+
+
+        return "displayUserPoints";
+
+
+
     }
 
 }

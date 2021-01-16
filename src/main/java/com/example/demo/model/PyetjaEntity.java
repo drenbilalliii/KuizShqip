@@ -120,8 +120,8 @@ public class PyetjaEntity {
         this.piket = piket;
     }
 
-    public KuiziEntity getKuiziEntity(){
-        return kuiziEntity;
+    public Integer getKuiziEntity(){
+        return kuiziEntity.getKuiziId();
     }
     public void setKuiziEntity(KuiziEntity kuiziEntity){
         this.kuiziEntity = kuiziEntity;

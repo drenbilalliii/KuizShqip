@@ -21,5 +21,7 @@ public interface JsPytjeService {
     List<JsPytjeEntity> findAllJs() throws NashornException;
 
     List<String> findByPergjigja() throws NashornException;
+
+    List<JsPytjeEntity> findByQuizID(Long id) throws NashornException;
 }
 

@@ -20,6 +20,7 @@ public class KuiziEntity {
     @Column(name = "emri_kuizit")
     private String emriKuizit;
     @Basic
+
     @Column(name = "datakuizit")
     private Date dataKuizit;
     @Basic

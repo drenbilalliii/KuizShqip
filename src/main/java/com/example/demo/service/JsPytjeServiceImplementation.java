@@ -62,4 +62,9 @@ public class JsPytjeServiceImplementation implements JsPytjeService {
     public List<String> findByPergjigja() throws NashornException {
         return  jsPytjeRepository.findByPergjigja();
     }
+
+    @Override
+    public List<JsPytjeEntity> findByQuizID(Long id) throws NashornException {
+        return jsPytjeRepository.findAllByQuizID(id);
+    }
 }

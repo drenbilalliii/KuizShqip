@@ -14,5 +14,8 @@ public interface JsPytjeRepository  extends JpaRepository<JsPytjeEntity,Long> {
     @Query(value = "SELECT p.Pergjigjja from js_pytje p",nativeQuery = true)
     public List<String> findByPergjigja();
 
+    @Query(value = "select * from js_pytje where KuiziID = ?1",nativeQuery = true)
+    public List<JsPytjeEntity> findAllByQuizID(Long id);
+
 
 }

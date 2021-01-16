@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Medieval Kahoot</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Medieval Kahoot</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/allQuizes}">Quizzes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/allJsQuizzes}" > <i class="fa fa-fire"></i>JS Quizzes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+<!-- KETU MUND TE NXIRRESH PYETJET -->
+<div class="row justify-content-center">
+    <h1 class="display-4"></h1><br>
+</div>
+<div class="row justify-content-center">
+    <h1 class="display-4"></h1><br>
+</div>
+<br>
+
+<div class="row justify-content-center">
+    <h1 class="display-4" th:text="${' Kuizi ne ' + emriKuizit}">Test</h1><br>
+</div>
+
+
+<div class="container survey-content">
+    <div class="row">
+        <div class="span12" >
+            <div class="pytje" >
+                <form id="survey" th:action="@{/takeKuiz/userTakesIt}" method="post"  >
+                    <div class="pyetjet" th:each="pyetje,iteracion : ${listaPytjesh}">
+                        <div id="q-1" class="question-wrapper" data-question-id="1" data-question-code="item_1" data-question-type="1" >
+                            <div id="q-inner-wrapper-1" class="question-type-example" >
+
+                                <strong> <span class="required-field"></span><h2 th:text="${iteracion.index + 1 +'. ' + pyetje.getEmriPyetjes()}"></h2><span class="tooltip-link"></span></strong>
+                                <div>
+                                    <ul>
+                                        <li><input type="checkbox"  th:value="${pyetje.getOpsioniA()}" th:name="Opsioni" id="OP1"  class="css-checkbox-button"> <label for="OP1" th:text="${pyetje.getOpsioniA()}"></label></li>
+                                        <li><input type="checkbox"  th:value="${pyetje.getOpsioniB()}"th:name="Opsioni" id="OP2" class="css-checkbox-button"> <label for="OP2"  th:text="${pyetje.getOpsioniB()}"></label></li>
+                                        <li><input type="checkbox"  th:value="${pyetje.getOpsioniC()}"th:name="Opsioni" id="OP3" class="css-checkbox-button"> <label for="OP3"  th:text="${pyetje.getOpsioniC()}"></label></li>
+                                        <li><input type="checkbox"  th:value="${pyetje.getOpsioniD()}"th:name="Opsioni"  id="OP4" class="css-checkbox-button"> <label for="OP4" th:text="${pyetje.getOpsioniD()}"></label></li>
+                                    </ul>
+                                    <div class="clear-both"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <br>
+                    <input name="buttoni"  type="submit" class="btn" id="test" value="Continue »">
+                </form>
+                <br>
+                <br>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+</footer>
+
+</body>
+</html>

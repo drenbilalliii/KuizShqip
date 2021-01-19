@@ -75,8 +75,8 @@ public class JsPytjeEntity {
         this.piketPytjes = piketPytjes;
     }
 
-    public KuiziEntity getKuiziEntity() {
-        return kuiziEntity;
+    public Integer getKuiziEntity() {
+        return kuiziEntity.getKuiziId();
     }
 
     public String getPergjigja() {

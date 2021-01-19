@@ -8,17 +8,30 @@ import java.util.Objects;
  */
 
 @Entity
-@Table(name = "Perdoruesi", schema = "dbo", catalog = "kuiziDatabase")
+@Table(name = "Perdoruesi")
 public class PerdoruesiEntity {
-    private int perdoruesiId;
-    private String username;
-    private String emri;
-    private String mbiemri;
-    private String email;
-    private String password;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PerdoruesiID")
+    private int perdoruesiId;
+    @Basic
+    @Column(name = "username")
+    private String username;
+    @Basic
+    @Column(name = "emri")
+    private String emri;
+    @Basic
+    @Column(name = "mbiemri")
+    private String mbiemri;
+    @Basic
+    @Column(name = "email")
+    private String email;
+    @Basic
+    @Column(name = "password")
+    private String password;
+
+
     public int getPerdoruesiId() {
         return perdoruesiId;
     }
@@ -27,8 +40,7 @@ public class PerdoruesiEntity {
         this.perdoruesiId = perdoruesiId;
     }
 
-    @Basic
-    @Column(name = "Username")
+
     public String getUsername() {
         return username;
     }
@@ -37,8 +49,7 @@ public class PerdoruesiEntity {
         this.username = username;
     }
 
-    @Basic
-    @Column(name = "Emri")
+
     public String getEmri() {
         return emri;
     }
@@ -47,8 +58,7 @@ public class PerdoruesiEntity {
         this.emri = emri;
     }
 
-    @Basic
-    @Column(name = "Mbiemri")
+
     public String getMbiemri() {
         return mbiemri;
     }
@@ -57,8 +67,7 @@ public class PerdoruesiEntity {
         this.mbiemri = mbiemri;
     }
 
-    @Basic
-    @Column(name = "Email")
+
     public String getEmail() {
         return email;
     }
@@ -67,8 +76,7 @@ public class PerdoruesiEntity {
         this.email = email;
     }
 
-    @Basic
-    @Column(name = "Password")
+
     public String getPassword() {
         return password;
     }

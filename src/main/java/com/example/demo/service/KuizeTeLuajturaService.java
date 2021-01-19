@@ -1,19 +1,18 @@
 package com.example.demo.service;
 
 import com.example.demo.exceptions.KuiziException;
-import com.example.demo.model.KuizeTeLuajturaEntity;
-import com.example.demo.model.KuiziEntity;
+import com.example.demo.model.KuizeteluajturaEntity;
 
 public interface KuizeTeLuajturaService {
 
 
-    KuizeTeLuajturaEntity save(KuizeTeLuajturaEntity kuizeTeLuajturaEntity) throws KuiziException;
+    KuizeteluajturaEntity save(KuizeteluajturaEntity kuizeTeLuajturaEntity) throws KuiziException;
 
-    KuizeTeLuajturaEntity find(Long id) throws KuiziException;
+    KuizeteluajturaEntity find(Long id) throws KuiziException;
 
-    KuizeTeLuajturaEntity update(KuizeTeLuajturaEntity newKuizi) throws KuiziException;
+    KuizeteluajturaEntity update(KuizeteluajturaEntity newKuizi) throws KuiziException;
 
-    void delete(KuizeTeLuajturaEntity kuizeTeLuajturaEntity) throws KuiziException;
+    void delete(KuizeteluajturaEntity kuizeTeLuajturaEntity) throws KuiziException;
 
     Integer getKuizeTeLuajtura() throws KuiziException;
 

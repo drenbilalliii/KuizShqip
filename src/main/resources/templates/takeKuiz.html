@@ -41,7 +41,7 @@
                     <a class="nav-link" th:href="@{/allJsQuizzes}" > <i class="fa fa-fire"></i>JS Quizzes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
+                    <a class="nav-link"  th:href="@{/loginAdmin}">Login</a>
                 </li>
             </ul>
         </div>
@@ -91,6 +91,7 @@
                     <br>
 <!--                    Zgjidhje Qesharake ama it worksssss-->
                     <input name="ID" type="hidden" th:value="${listaPytjesh.get(0).getKuiziEntity()}">
+                    <input type="text" class="form-control" th:name="emriLojtarit" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Shkruaje Emrin">
                     <input name="buttoni"  type="submit" class="btn" id="test" value="Continue »">
                 </form>
                 <br>

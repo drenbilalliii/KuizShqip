@@ -39,7 +39,7 @@ public class PyetjaEntity {
     @Column(name = "piket")
     private Integer piket;
     @JoinColumn(name = "KuiziID", referencedColumnName = "KuiziID")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private KuiziEntity kuiziEntity;
 
     public PyetjaEntity() {

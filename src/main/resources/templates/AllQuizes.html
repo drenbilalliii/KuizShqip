@@ -39,8 +39,14 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/allJsQuizzes}" > <i class="fa fa-fire"></i>JS Quizzes</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.html">Login</a>
+                    <li class="nav-item" th:if="${session.EmriAdminit == null}">
+                        <a class="nav-link" th:href="@{/loginAdmin}">Login</a>
+                    </li>
+                    <li class="nav-item" th:if="${session.EmriAdminit}">
+                        <a class="nav-link" th:href="@{/loginAdmin}">DashBoard</a>
+                    </li>
+                    <li  class="nav-item" th:if="${session.EmriAdminit}">
+                        <a class="nav-link" th:href="@{/logOut}">Sign Out</a>
                     </li>
                 </ul>
             </div>
@@ -60,11 +66,9 @@
 
 
 
-    <!-- Page Features -->
     <div class="row text-center">
         <div class="col-lg-3 col-md-6 mb-4" th:each="kuizi : ${listaMeKuize}" >
             <div class="card h-100">
-                <!--<img class="card-img-top" src="http://placehold.it/500x325" alt="">-->
                 <div class="card-header">
                     <h4 class="card-title" th:text="${kuizi.getEmriKuizit()}"></h4>
                 </div>

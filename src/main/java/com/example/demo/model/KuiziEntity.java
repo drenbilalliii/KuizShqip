@@ -20,12 +20,14 @@ public class KuiziEntity {
     @Column(name = "emri_kuizit")
     private String emriKuizit;
     @Basic
-
     @Column(name = "datakuizit")
     private Date dataKuizit;
     @Basic
     @Column(name = "kategoria")
     private String kategoria;
+    @JoinColumn(name = "PERDORUESIID", referencedColumnName = "PERDORUESIID")
+    @ManyToOne(optional = true)
+    private PerdoruesiEntity perdoruesiEntity;
 
     public KuiziEntity() {
     }

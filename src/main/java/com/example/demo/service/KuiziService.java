@@ -33,5 +33,5 @@ public interface KuiziService {
 
     String getEmriKuizitByID(Long id) throws KuiziException;
 
-    public  int countPergjigjenESakta(List<String> userPergjigje, List<PyetjaEntity> pyetjaEntities) throws KuiziException;
+    public  int [] countPergjigjenESakta(List<String> userPergjigje, List<PyetjaEntity> pyetjaEntities) throws KuiziException;
 }

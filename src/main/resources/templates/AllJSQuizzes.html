@@ -40,8 +40,14 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/allJsQuizzes}" > <i class="fa fa-fire"></i>JS Quizzes</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
+                <li class="nav-item" th:if="${session.EmriAdminit == null}">
+                    <a class="nav-link" th:href="@{/loginAdmin}">Login</a>
+                </li>
+                <li class="nav-item" th:if="${session.EmriAdminit}">
+                    <a class="nav-link" th:href="@{/loginAdmin}">DashBoard</a>
+                </li>
+                <li  class="nav-item" th:if="${session.EmriAdminit}">
+                    <a class="nav-link" th:href="@{/logOut}">Sign Out</a>
                 </li>
             </ul>
 

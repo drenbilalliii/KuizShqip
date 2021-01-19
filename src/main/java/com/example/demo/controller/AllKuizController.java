@@ -9,8 +9,10 @@ import com.example.demo.service.PyetjaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -33,7 +35,12 @@ public class AllKuizController {
     @RequestMapping("/allQuizes")
     public String redirectToAll(Model model) throws KuiziException {
 
-        model.addAttribute("listaMeKuize",kuiziService.teGjitheKuizet());
+
+        List<KuiziEntity> kuiziEntities = kuiziService.teGjitheKuizet();
+        Collections.shuffle(kuiziEntities);
+        model.addAttribute("listaMeKuize",kuiziEntities);
+
+
 
         return "AllQuizes";
 

@@ -16,11 +16,31 @@
     <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        #label {
-            margin-top: 50px ;
-        }
-    </style>
+
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #17a2b8;
+                height: 100vh;
+            }
+            #login .container #login-row #login-column #login-box {
+                margin-top: 120px;
+                max-width: 600px;
+                height: 320px;
+                border: 1px solid #9C9C9C;
+                background-color: #EAEAEA;
+            }
+            #login .container #login-row #login-column #login-box #login-form {
+                padding: 20px;
+            }
+            #login .container #login-row #login-column #login-box #login-form #register-link {
+                margin-top: -85px;
+            }
+            form .form-group {
+                margin-bottom: 10px;
+            }
+        </style>
 </head>
 <body>
 
@@ -59,33 +79,38 @@
     </div>
 </nav>
 
-<form action="#" method="post" th:action="@{/jsQuiz/playerPoints}">
+<div id="login">
+    <h3 class="text-center text-white pt-5">Login form</h3>
     <div class="container">
-        <h1>Kuizi per JavaScript</h1>
-        <div class="form-group" th:each="jsQuizEntity,iteracion : ${jsPytjeEntityList}">
-            <label id="label" th:text="${iteracion.index + 1 + '. ' + jsQuizEntity.getKodi()}" ></label>
-            <textarea class="form-control" rows="10" name="KodiJSText"></textarea>
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" th:action="@{/tryToLogin}" method="post">
+                        <h3 class="text-center text-info">Login</h3>
+                        <div class="form-group">
+                            <label for="username" class="text-info">Username:</label><br>
+                            <input type="text" name="email" id="username" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="password">Password:</label><br>
+                            <input type="password" name="password" id="password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                        </div>
+                        <div id="register-link" class="text-right">
+                            <a href="#" class="text-info">Register here</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <input name="IDJS" type="hidden" th:value="${jsPytjeEntityList.get(0).getKuiziEntity()}">
-        <input type="text" class="form-control" th:name="emriLojtarit" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Shkruaje Emrin">
-        <button type="submit" class="btn btn-info">Run</button>
-
     </div>
-</form>
-
-
-
-
-<footer class="py-5 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-</footer>
-
-
-
-
-
-
+</div>
 </body>
+
+
+
 </html>
+

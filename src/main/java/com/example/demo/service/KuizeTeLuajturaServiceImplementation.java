@@ -1,10 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.exceptions.KuiziException;
-import com.example.demo.model.KuizeTeLuajturaEntity;
-import com.example.demo.model.KuiziEntity;
+import com.example.demo.model.KuizeteluajturaEntity;
 import com.example.demo.repository.KuizeTeLuajturaRepository;
-import com.example.demo.repository.KuiziRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,14 +28,14 @@ public class KuizeTeLuajturaServiceImplementation implements KuizeTeLuajturaServ
 
 
     @Override
-    public KuizeTeLuajturaEntity save(KuizeTeLuajturaEntity kuizeTeLuajturaEntity) throws KuiziException {
+    public KuizeteluajturaEntity save(KuizeteluajturaEntity kuizeTeLuajturaEntity) throws KuiziException {
         return kuizeTeLuajturaRepository.save(kuizeTeLuajturaEntity);
     }
 
     @Override
-    public KuizeTeLuajturaEntity find(Long id) throws KuiziException {
+    public KuizeteluajturaEntity find(Long id) throws KuiziException {
 
-        KuizeTeLuajturaEntity kuizeTeLuajturaEntity = kuizeTeLuajturaRepository.getOne(id);
+        KuizeteluajturaEntity kuizeTeLuajturaEntity = kuizeTeLuajturaRepository.getOne(id);
 
         if(kuizeTeLuajturaEntity == null){
             throw new KuiziException("Nuk u kthye asnje e dhene");
@@ -46,13 +44,13 @@ public class KuizeTeLuajturaServiceImplementation implements KuizeTeLuajturaServ
     }
 
     @Override
-    public KuizeTeLuajturaEntity update(KuizeTeLuajturaEntity newKuizi) throws KuiziException {
+    public KuizeteluajturaEntity update(KuizeteluajturaEntity newKuizi) throws KuiziException {
 
         return null;
     }
 
     @Override
-    public void delete(KuizeTeLuajturaEntity kuizeTeLuajturaEntity) throws KuiziException {
+    public void delete(KuizeteluajturaEntity kuizeTeLuajturaEntity) throws KuiziException {
 
     }
 

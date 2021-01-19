@@ -129,10 +129,10 @@ public class KuiziServiceImplementation implements KuiziService {
         List<KuiziEntity> teGjitheKuizet = kuiziRepository.findByDataSotshme(LocalDate.now());
 
 
-        if(teGjitheKuizet.size() == 0){
-            logger.error("Nuk ka asnje kuiz ne sistem");
-            throw new KuiziException("Nuk u kthye asnje rezultat");
-        }
+//        if(teGjitheKuizet.size() == 0){
+//            logger.error("Nuk ka asnje kuiz ne sistem");
+//            throw new KuiziException("Nuk u kthye asnje rezultat");
+//        }
         return teGjitheKuizet;
     }
 
@@ -142,15 +142,19 @@ public class KuiziServiceImplementation implements KuiziService {
     }
 
     @Override
-    public int countPergjigjenESakta(List<String> userPergjigje, List<PyetjaEntity> pyetjaEntities) throws KuiziException {
+    public int [] countPergjigjenESakta(List<String> userPergjigje, List<PyetjaEntity> pyetjaEntities) throws KuiziException {
 
         int piketShuma = 0;
+
+        int countPytjeTeSakta = 0;
+
         for(int i=0;i<userPergjigje.size();i++){
-            if(userPergjigje.get(i).equals(pyetjaEntities.get(i).getOpsioniSakt())){
+            if(userPergjigje.get(i).equalsIgnoreCase(pyetjaEntities.get(i).getOpsioniSakt())){
+                countPytjeTeSakta++;
                 piketShuma+=pyetjaEntities.get(i).getPiket();
             }
         }
-        return piketShuma;
+        return new int[]{countPytjeTeSakta,piketShuma};
 
     }
 

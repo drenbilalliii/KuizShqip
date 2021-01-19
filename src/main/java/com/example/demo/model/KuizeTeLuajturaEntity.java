@@ -1,50 +1,56 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.util.Objects;
+
+/**
+ * @author Dren Bilalli on 1/19/2021
+ */
 
 @Entity
-@Table(name = "KuizeTeLuajtura")
-public class KuizeTeLuajturaEntity {
+@Table(name = "Kuizeteluajtura", schema = "dbo", catalog = "kuizDatabase")
+public class KuizeteluajturaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "KuizeTeLuajturaID")
-    private int kuizeTeLuajturaId;
+    @Column(name = "KuizeteluajturaID")
+    private int kuizeteluajturaId;
     @Basic
-    @Column(name = "EmriLojtarit")
-    private String emriLojtarit;
-    @JoinColumn(name = "KuiziID", referencedColumnName = "KuiziID")
-    @ManyToOne(optional = false)
-    private KuiziEntity kuiziEntity;
+    @Column(name = "Lojetari")
+    private String lojetari;
     @Basic
-    @Column(name = "PIKET")
+    @Column(name = "Piket")
     private Integer piket;
+    @JoinColumn(name = "KuiziID", referencedColumnName = "KuiziID")
+    @ManyToOne(optional = true)
+    private KuiziEntity kuiziEntity;
 
-
-    public int getKuizeTeLuajturaId() {
-        return kuizeTeLuajturaId;
+    public KuizeteluajturaEntity() {
     }
 
-    public void setKuizeTeLuajturaId(int kuizeTeLuajturaId) {
-        this.kuizeTeLuajturaId = kuizeTeLuajturaId;
+    public static void main(String[] args) {
+
+
     }
 
 
-    public String getEmriLojtarit() {
-        return emriLojtarit;
+    public int getKuizeteluajturaId() {
+        return kuizeteluajturaId;
     }
 
-    public void setEmriLojtarit(String emriLojtarit) {
-        this.emriLojtarit = emriLojtarit;
+    public void setKuizeteluajturaId(int kuizeteluajturaId) {
+        this.kuizeteluajturaId = kuizeteluajturaId;
     }
 
-    public KuiziEntity getKuiziEntity() {
-        return kuiziEntity;
+
+    public String getLojetari() {
+        return lojetari;
     }
 
-    public void setKuiziEntity(KuiziEntity kuiziEntity) {
-        this.kuiziEntity = kuiziEntity;
+    public void setLojetari(String lojetari) {
+        this.lojetari = lojetari;
     }
+
 
     public Integer getPiket() {
         return piket;
@@ -54,23 +60,27 @@ public class KuizeTeLuajturaEntity {
         this.piket = piket;
     }
 
+
+    public KuiziEntity getKuiziEntity() {
+        return kuiziEntity;
+    }
+
+    public void setKuiziEntity(KuiziEntity kuiziEntity) {
+        this.kuiziEntity = kuiziEntity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
-        KuizeTeLuajturaEntity that = (KuizeTeLuajturaEntity) o;
-
-        if (kuizeTeLuajturaId != that.kuizeTeLuajturaId) return false;
-        if (emriLojtarit != null ? !emriLojtarit.equals(that.emriLojtarit) : that.emriLojtarit != null) return false;
-
-        return true;
+        KuizeteluajturaEntity that = (KuizeteluajturaEntity) o;
+        return kuizeteluajturaId == that.kuizeteluajturaId &&
+                Objects.equals(lojetari, that.lojetari) &&
+                Objects.equals(piket, that.piket);
     }
 
     @Override
     public int hashCode() {
-        int result = kuizeTeLuajturaId;
-        result = 31 * result + (emriLojtarit != null ? emriLojtarit.hashCode() : 0);
-        return result;
+        return Objects.hash(kuizeteluajturaId, lojetari, piket);
     }
 }

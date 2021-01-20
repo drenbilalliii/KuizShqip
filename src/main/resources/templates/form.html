@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Multiple step form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script type="text/javascript" src="js/jquery-1.9.0.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/additional-methods.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<style>
+
+    html, body {
+        padding-top: 20px;
+    }
+
+    [data-role="dynamic-fields"] > .form-inline + .form-inline {
+        margin-top: 0.5em;
+    }
+
+    [data-role="dynamic-fields"] > .form-inline [data-role="add"] {
+        display: none;
+    }
+
+    [data-role="dynamic-fields"] > .form-inline:last-child [data-role="add"] {
+        display: inline-block;
+    }
+
+    [data-role="dynamic-fields"] > .form-inline:last-child [data-role="remove"] {
+        display: none;
+    }
+</style>
+<body>
+
+
+<script>
+    $(function() {
+        // Remove button click
+        $(document).on(
+            'click',
+            '[data-role="dynamic-fields"] > .form-inline [data-role="remove"]',
+            function(e) {
+                e.preventDefault();
+                $(this).closest('.form-inline').remove();
+            }
+        );
+
+        // Add button click
+        $(document).on(
+            'click',
+            '[data-role="dynamic-fields"] > .form-inline [data-role="add"]',
+            function(e) {
+                e.preventDefault();
+                var container = $(this).closest('[data-role="dynamic-fields"]');
+                new_field_group = container.children().filter('.form-inline:first-child').clone();
+                new_field_group.find('input').each(function(){
+                    $(this).val('');
+                });
+                container.append(new_field_group);
+            }
+        );
+    });
+
+
+
+
+    $(document).ready(function(){
+        //@naresh action dynamic childs
+        var next_exp = 0;
+        $("#add-more").click(function(e){
+            e.preventDefault();
+            var addto = "#fielda" + next_exp;
+            var addRemove = "#fielda" + (next_exp);
+            next_exp = next_exp + 1;
+            var newInp = '<div id="fielda'+ next_exp +'" name="field1'+ next_exp +'"><hr/> <div class="form-group"> <label for="csetitle">Pyetja</label> <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenonin Pyetjen" style="resize:vertical;" required></textarea>     <label for="csetitle">OpsioniA</label> <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenonin OpsioninA" style="resize:vertical;" required></textarea> <label for="csetitle">OpsioniB</label> <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenonin OpsioninB" style="resize:vertical;" required></textarea> <label for="csetitle">OpsioniC</label> <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenonin OpsioninC" style="resize:vertical;" required></textarea> <label for="csetitle">OpsioniD</label> <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenonin OpdioninD" style="resize:vertical;" required></textarea> <label for="csetitle">Pergjigjja e Saket</label> <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenoni pergjijgjen e sakt" style="resize:vertical;" required></textarea></div> <!--<div class="form-group"></div> <div class="form-group">--> <!--<label for="options">Options</label>--> <!-- <div class="form-group"> <div class="col-md-12">--> <!--<input type="radio" name="reason" value="Answer"> Answer <span>-</span>--> <!--<label class="sr-only" for="field-name">Option</label>  </div> </div>--> <!--<button class="btn btn-danger" data-role="remove"> <span class="glyphicon glyphicon-remove"></span> </button> <button class="btn btn-primary" data-role="add"> <span class="glyphicon glyphicon-plus"></span> </button>--> <!--</div> </div> </div>-->  <div class="form-group"> <label for="csetitle">Piket</label> <input type="number" class="form-control" id="question" name="question" placeholder="Shenoni piket e pyetjes" required><hr/></div></div>';
+            var newInput = $(newInp);
+
+            var removeBtn = '<div class="form-group"><button id="remove' + (next_exp - 1) + '" class="btn btn-danger remove-me" >Remove</button></div></div></div><div id="field">';
+            var removeButton = $(removeBtn);
+            $(addto).after(newInput);
+            $(addRemove).after(removeButton);
+            $("#fielda" + next_exp).attr('data-source',$(addto).attr('data-source'));
+            $("#count").val(next_exp);
+
+            $('.remove-me').click(function(e){
+                e.preventDefault();
+                var fieldNum = this.id.charAt(this.id.length-1);
+                var fieldID = "#fielda" + fieldNum;
+                $(this).remove();
+                $(fieldID).remove();
+            });
+        });
+
+
+
+    });
+</script>
+
+
+<div class="container">
+    <div class="col-md-4">
+        <form class="form-horizontal" action="" method="POST" id="myform">
+            <div class="form-group">
+                <label for="course">Emri i Kuzit</label>
+                <select type="text" class="form-control" id="course" name="course" placeholder="Kuizi"></select>
+                <option></option>
+            </div>
+            <div id="fielda">
+                <div id="fielda0">
+                    <!-- Text input-->
+                    <hr/>
+                    <div class="form-group">
+                        <label for="csetitle">Pyetja</label>
+                        <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenonin Pyetjen" style="resize:vertical;" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="csetitle">OpsioniA</label>
+                        <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenoni OpsioninA" style="resize:vertical;" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="csetitle">OpsioniB</label>
+                        <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenoni OpsioninB" style="resize:vertical;" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="csetitle">OpsioniC</label>
+                        <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenoni OpsioninC" style="resize:vertical;" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="csetitle">OpsioniD</label>
+                        <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenoni OpsioninD" style="resize:vertical;" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="csetitle">Pergjigjja e Saket</label>
+                        <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenoni pergjijgjen e sakt" style="resize:vertical;" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="csetitle">Piket</label>
+                        <input type="number" class="form-control" id="question" name="question" placeholder="Shenoni piket e pyetjes" required>
+                        <hr/>
+                    </div>
+                </div>
+                <!--end field0-->
+            </div>
+            <!--end field-->
+            <div class="form-group">
+                <button id="add-more" name="add-more" class="btn btn-primary">Add More</button>
+            </div>
+        </form>
+    </div>
+</div>
+<button type="button" class="btn btn-primary">Submit</button>
+</body>
+</html>

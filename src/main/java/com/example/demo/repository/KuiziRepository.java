@@ -37,7 +37,7 @@ public interface KuiziRepository extends JpaRepository<KuiziEntity,Long> {
     @Query(value = "select * from Kuizi where  not Kategoria = 'Java Script'",nativeQuery = true)
     public List<KuiziEntity> findAll();
 
-    @Query(value = "select  * from Kuizi where datakuizit = :datakrijimit ",nativeQuery = true)
+    @Query(value = "select  TOP 4 * from Kuizi where datakuizit = :datakrijimit ",nativeQuery = true)
     public List<KuiziEntity> findByDataSotshme(@Param("datakrijimit") LocalDate datakrijimit);
 
     @Query(value = "select emri_kuizit from Kuizi where KuiziID = :numriID",nativeQuery = true)

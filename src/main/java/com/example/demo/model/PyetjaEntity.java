@@ -123,6 +123,7 @@ public class PyetjaEntity {
     public Integer getKuiziEntity(){
         return kuiziEntity.getKuiziId();
     }
+
     public void setKuiziEntity(KuiziEntity kuiziEntity){
         this.kuiziEntity = kuiziEntity;
     }

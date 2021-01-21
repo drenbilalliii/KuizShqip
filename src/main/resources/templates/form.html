@@ -75,7 +75,8 @@
             var addto = "#fielda" + next_exp;
             var addRemove = "#fielda" + (next_exp);
             next_exp = next_exp + 1;
-            var newInp = '<div id="fielda'+ next_exp +'" name="field1'+ next_exp +'"><hr/> <div class="form-group"> <label for="csetitle">Pyetja</label> <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenonin Pyetjen" style="resize:vertical;" required></textarea>     <label for="csetitle">OpsioniA</label> <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenonin OpsioninA" style="resize:vertical;" required></textarea> <label for="csetitle">OpsioniB</label> <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenonin OpsioninB" style="resize:vertical;" required></textarea> <label for="csetitle">OpsioniC</label> <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenonin OpsioninC" style="resize:vertical;" required></textarea> <label for="csetitle">OpsioniD</label> <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenonin OpdioninD" style="resize:vertical;" required></textarea> <label for="csetitle">Pergjigjja e Saket</label> <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenoni pergjijgjen e sakt" style="resize:vertical;" required></textarea></div> <!--<div class="form-group"></div> <div class="form-group">--> <!--<label for="options">Options</label>--> <!-- <div class="form-group"> <div class="col-md-12">--> <!--<input type="radio" name="reason" value="Answer"> Answer <span>-</span>--> <!--<label class="sr-only" for="field-name">Option</label>  </div> </div>--> <!--<button class="btn btn-danger" data-role="remove"> <span class="glyphicon glyphicon-remove"></span> </button> <button class="btn btn-primary" data-role="add"> <span class="glyphicon glyphicon-plus"></span> </button>--> <!--</div> </div> </div>-->  <div class="form-group"> <label for="csetitle">Piket</label> <input type="number" class="form-control" id="question" name="question" placeholder="Shenoni piket e pyetjes" required><hr/></div></div>';
+            var newInp = '<div id="fielda'+ next_exp +'" name="field1'+ next_exp +'"><hr/> <div class="form-group"> <label for="question">Pyetja</label> <textarea name="question" type="text" class="form-control" id="question" placeholder="Shenonin Pyetjen" style="resize:vertical;" required></textarea>   ' +
+                ' <label for="question1">OpsioniA</label> <textarea name="optionAName"  type="text" class="form-control" id="question1" placeholder="Shenonin OpsioninA" style="resize:vertical;" required></textarea> <label for="question2">OpsioniB</label> <textarea name="optionBName"  type="text" class="form-control" id="question2"  placeholder="Shenonin OpsioninB" style="resize:vertical;" required></textarea> <label for="question3">OpsioniC</label> <textarea name="optionCName" type="text" class="form-control" id="question3"  placeholder="Shenonin OpsioninC" style="resize:vertical;" required></textarea> <label for="question4">OpsioniD</label> <textarea name="optionDName"  type="text" class="form-control" id="question4" placeholder="Shenonin OpdioninD" style="resize:vertical;" required></textarea> <label for="question5">Pergjigjja e Saket</label> <textarea  name="correctAnswerName"  type="text" class="form-control" id="question5"  placeholder="Shenoni pergjijgjen e sakt" style="resize:vertical;" required></textarea></div> <!--<div class="form-group"></div> <div class="form-group">--> <!--<label for="options">Options</label>--> <!-- <div class="form-group"> <div class="col-md-12">--> <!--<input type="radio" name="reason" value="Answer"> Answer <span>-</span>--> <!--<label class="sr-only" for="field-name">Option</label>  </div> </div>--> <!--<button class="btn btn-danger" data-role="remove"> <span class="glyphicon glyphicon-remove"></span> </button> <button class="btn btn-primary" data-role="add"> <span class="glyphicon glyphicon-plus"></span> </button>--> <!--</div> </div> </div>-->  <div class="form-group"> <label for="csetitle">Piket</label> <input name="piketName"  type="number" class="form-control" id="question"  placeholder="Shenoni piket e pyetjes" required><hr/></div></div>';
             var newInput = $(newInp);
 
             var removeBtn = '<div class="form-group"><button id="remove' + (next_exp - 1) + '" class="btn btn-danger remove-me" >Remove</button></div></div></div><div id="field">';
@@ -102,43 +103,45 @@
 
 <div class="container">
     <div class="col-md-4">
-        <form class="form-horizontal" action="" method="POST" id="myform">
+
+        <form class="form-horizontal" id="myform" method="POST" th:action="@{/test/testTeDhenat}" th:object="${kuizi}">
             <div class="form-group">
-                <label for="course">Emri i Kuzit</label>
-                <select type="text" class="form-control" id="course" name="course" placeholder="Kuizi"></select>
-                <option></option>
+                <label for="kuizi">Emri i Kuzit</label>
+                <input th:name="kuiziName" th:field="*{emriKuizit}" type="text" class="form-control" id="kuizi"  placeholder="Kuizi"></input>
+                <label for="kategoria">Kategoria</label>
+                <input th:name="kategoriaName" th:field="*{kategoria}" type="text" class="form-control" id="kategoria"  placeholder="Kuizi"></input>
             </div>
-            <div id="fielda">
-                <div id="fielda0">
+            <div id="fielda" th:object="${pyetjaKuiz}">
+                <div id="fielda0" >
                     <!-- Text input-->
                     <hr/>
                     <div class="form-group">
-                        <label for="csetitle">Pyetja</label>
-                        <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenonin Pyetjen" style="resize:vertical;" required></textarea>
+                        <label for="question">Pyetja</label>
+                        <textarea  th:name="question"  type="text" class="form-control" id="question"   placeholder="Shenonin Pyetjen" style="resize:vertical;" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="csetitle">OpsioniA</label>
-                        <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenoni OpsioninA" style="resize:vertical;" required></textarea>
+                        <label for="question1">OpsioniA</label>
+                        <textarea  th:name="optionAName" type="text" class="form-control" id="question1" placeholder="Shenoni OpsioninA" style="resize:vertical;" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="csetitle">OpsioniB</label>
-                        <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenoni OpsioninB" style="resize:vertical;" required></textarea>
+                        <label for="question2">OpsioniB</label>
+                        <textarea th:name="optionBName" type="text" class="form-control" id="question2"  placeholder="Shenoni OpsioninB" style="resize:vertical;" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="csetitle">OpsioniC</label>
-                        <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenoni OpsioninC" style="resize:vertical;" required></textarea>
+                        <label for="question3">OpsioniC</label>
+                        <textarea th:name="optionCName" type="text" class="form-control" id="question3"  placeholder="Shenoni OpsioninC" style="resize:vertical;" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="csetitle">OpsioniD</label>
-                        <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenoni OpsioninD" style="resize:vertical;" required></textarea>
+                        <label for="question4">OpsioniD</label>
+                        <textarea th:name="optionDName" type="text" class="form-control" id="question4"  placeholder="Shenoni OpsioninD" style="resize:vertical;" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="csetitle">Pergjigjja e Saket</label>
-                        <textarea type="text" class="form-control" id="question" name="question" placeholder="Shenoni pergjijgjen e sakt" style="resize:vertical;" required></textarea>
+                        <label for="question5">Pergjigjja e Saket</label>
+                        <textarea th:name="correctAnswerName" type="text"  class="form-control" id="question5" placeholder="Shenoni pergjijgjen e sakt" style="resize:vertical;" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="csetitle">Piket</label>
-                        <input type="number" class="form-control" id="question" name="question" placeholder="Shenoni piket e pyetjes" required>
+                        <label for="question6">Piket</label>
+                        <input th:name="piketName" type="number" class="form-control" id="question6"  placeholder="Shenoni piket e pyetjes" required>
                         <hr/>
                     </div>
                 </div>
@@ -148,9 +151,10 @@
             <div class="form-group">
                 <button id="add-more" name="add-more" class="btn btn-primary">Add More</button>
             </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </div>
-<button type="button" class="btn btn-primary">Submit</button>
+
 </body>
 </html>

@@ -145,8 +145,7 @@ luajtur ateherë për të bërë këtë punë më lehtë ne e kemi bërë që n�
     <div class="row text-center">
 
         <div class="col-lg-3 col-md-6 mb-4" th:each="kuizi : ${listaKuiz}" >
-            <div class="card h-100"  >
-                <!--<img class="card-img-top" src="http://placehold.it/500x325" alt="">-->
+            <div class="card h-100" >
                 <div class="card-header">
                     <h4 class="card-title" th:text="${kuizi.getEmriKuizit()}"></h4>
                 </div>
@@ -164,6 +163,9 @@ luajtur ateherë për të bërë këtë punë më lehtë ne e kemi bërë që n�
 
     </div>
 </div>
+
+
+
 <div class="container">
 <div class="row justify-content-center">
     <h1 class="display-4">Katër kurse të ditës së sotshme</h1><br>
@@ -192,6 +194,7 @@ e sotme">
             <div class="card-body">
                 <p class="card-text" th:text="${'Kategoria : ' + kuizi.getKategoria()}"> </p>
                 <p class="card-text" th:text="${'Data : ' + kuizi.getDataKuizit()}"> </p>
+<!--                <p class="card-text" th:text="${'Krijuar nga : ' + kuizi.getPerdoruesiEntity() +'i'}"> </p>-->
             </div>
             <div class="card-footer">
                 <a th:href="@{home/playQuiz/{id}(id=${kuizi.getKuiziId()})}" class="btn btn-outline-danger"><i class="fa fa-fw fa fa-play"></i>Fillo Kuizin</a>
@@ -203,6 +206,8 @@ e sotme">
 
 </div>
 </div>
+
+
 
 <footer class="py-5 bg-dark">
     <div class="container">

@@ -6,6 +6,8 @@ import com.example.demo.repository.KuizeTeLuajturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class KuizeTeLuajturaServiceImplementation implements KuizeTeLuajturaService{
 
@@ -63,5 +65,10 @@ public class KuizeTeLuajturaServiceImplementation implements KuizeTeLuajturaServ
     @Override
     public Integer countSaNjerzKanMePakPike(Integer kuiziID, Integer pike) throws KuiziException {
         return kuizeTeLuajturaRepository.countSaNjerzKanMePakPike(kuiziID,pike);
+    }
+
+    @Override
+    public List<String> getKuizinMeTeLuajturin() throws KuiziException {
+        return kuizeTeLuajturaRepository.getKuizinMeTeLuajturin();
     }
 }

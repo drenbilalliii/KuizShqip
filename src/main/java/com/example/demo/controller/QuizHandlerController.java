@@ -72,9 +72,7 @@ public class QuizHandlerController {
       kuizeTeLuajturaEntity.setPiket(countPiket);
       kuizeTeLuajturaService.save(kuizeTeLuajturaEntity);
 
-
-        System.out.println(lista);
-        System.out.println("Keni : " + countPiket + " pike");
+        model.addAttribute("gjatesiaPytjeve",lista.size());
         model.addAttribute("pytjeTeSakta",countPytjeSakta);
         model.addAttribute("countPiket",countPiket);
         model.addAttribute("saPersonaMbrapa",saPersonaMbrapa);

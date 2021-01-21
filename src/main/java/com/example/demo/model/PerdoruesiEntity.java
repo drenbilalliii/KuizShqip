@@ -99,6 +99,11 @@ public class PerdoruesiEntity {
     }
 
     @Override
+    public String toString() {
+        return  emri;
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(perdoruesiId, username, emri, mbiemri, email, password);
     }

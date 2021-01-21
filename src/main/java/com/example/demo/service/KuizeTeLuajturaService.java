@@ -3,6 +3,8 @@ package com.example.demo.service;
 import com.example.demo.exceptions.KuiziException;
 import com.example.demo.model.KuizeteluajturaEntity;
 
+import java.util.List;
+
 public interface KuizeTeLuajturaService {
 
 
@@ -17,6 +19,8 @@ public interface KuizeTeLuajturaService {
     Integer getKuizeTeLuajtura() throws KuiziException;
 
     Integer countSaNjerzKanMePakPike(Integer kuiziID,Integer pike) throws KuiziException;
+
+    public List<String> getKuizinMeTeLuajturin() throws KuiziException;
 }
 
 

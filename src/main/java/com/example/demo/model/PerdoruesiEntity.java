@@ -4,34 +4,31 @@ import javax.persistence.*;
 import java.util.Objects;
 
 /**
- * author Gramos Shala
+ * @author Dren Bilalli on 1/23/2021
  */
 
 @Entity
-@Table(name = "Perdoruesi")
+@Table(name = "Perdoruesi", schema = "dbo", catalog = "kuizDatabase")
 public class PerdoruesiEntity {
+
+    private int perdoruesiId;
+    private String username;
+    private String emri;
+    private String mbiemri;
+    private String email;
+    private String password;
+
+    public PerdoruesiEntity() {
+    }
+
+    public static void main(String[] args) {
+
+
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PerdoruesiID")
-    private int perdoruesiId;
-    @Basic
-    @Column(name = "username")
-    private String username;
-    @Basic
-    @Column(name = "emri")
-    private String emri;
-    @Basic
-    @Column(name = "mbiemri")
-    private String mbiemri;
-    @Basic
-    @Column(name = "email")
-    private String email;
-    @Basic
-    @Column(name = "password")
-    private String password;
-
-
+    @Column(name = "perdoruesi_id")
     public int getPerdoruesiId() {
         return perdoruesiId;
     }
@@ -40,7 +37,8 @@ public class PerdoruesiEntity {
         this.perdoruesiId = perdoruesiId;
     }
 
-
+    @Basic
+    @Column(name = "username")
     public String getUsername() {
         return username;
     }
@@ -49,7 +47,8 @@ public class PerdoruesiEntity {
         this.username = username;
     }
 
-
+    @Basic
+    @Column(name = "emri")
     public String getEmri() {
         return emri;
     }
@@ -58,7 +57,8 @@ public class PerdoruesiEntity {
         this.emri = emri;
     }
 
-
+    @Basic
+    @Column(name = "mbiemri")
     public String getMbiemri() {
         return mbiemri;
     }
@@ -67,7 +67,8 @@ public class PerdoruesiEntity {
         this.mbiemri = mbiemri;
     }
 
-
+    @Basic
+    @Column(name = "email")
     public String getEmail() {
         return email;
     }
@@ -76,7 +77,8 @@ public class PerdoruesiEntity {
         this.email = email;
     }
 
-
+    @Basic
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -100,7 +102,9 @@ public class PerdoruesiEntity {
 
     @Override
     public String toString() {
-        return  emri;
+        return "PerdoruesiEntity{" +
+                "emri='" + emri + '\'' +
+                '}';
     }
 
     @Override

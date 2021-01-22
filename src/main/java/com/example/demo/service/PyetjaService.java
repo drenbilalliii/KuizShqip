@@ -33,4 +33,6 @@ public interface PyetjaService {
 
     public Integer getNumrinEpyetjeve() throws PyetjaException;
 
+    public void deleteByKuiziID(Integer id) throws PyetjaException;
+
 }

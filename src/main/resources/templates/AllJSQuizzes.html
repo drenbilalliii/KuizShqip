@@ -44,7 +44,7 @@
                     <a class="nav-link" th:href="@{/loginAdmin}">Login</a>
                 </li>
                 <li class="nav-item" th:if="${session.EmriAdminit}">
-                    <a class="nav-link" th:href="@{/loginAdmin}">DashBoard</a>
+                    <a class="nav-link" th:href="@{/dashboardPage}">DashBoard</a>
                 </li>
                 <li  class="nav-item" th:if="${session.EmriAdminit}">
                     <a class="nav-link" th:href="@{/logOut}">Sign Out</a>
@@ -75,6 +75,7 @@
                 <div class="card-body">
                     <p class="card-text" th:text="${'Kategoria : ' + kuizi.getKategoria()}"> </p>
                     <p class="card-text" th:text="${'Data : ' + kuizi.getDataKuizit()}"> </p>
+                    <p class="card-text" th:text="${'Krijuar nga : ' + kuizi.getAdministatori() +'i'}"> </p>
                 </div>
 
                 <div class="card-footer">

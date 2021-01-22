@@ -11,11 +11,11 @@ public interface KuiziService {
 
     KuiziEntity save(KuiziEntity kuiziEntity) throws KuiziException;
 
-    KuiziEntity find(Long id) throws KuiziException;
+    KuiziEntity find(Integer id) throws KuiziException;
 
     KuiziEntity update(KuiziEntity newKuizi) throws KuiziException;
 
-    void delete(KuiziEntity kuiziEntity) throws KuiziException;
+    void delete(Integer kuiziID) throws KuiziException;
 
     List<KuiziEntity> TreKuizetEFundit() throws KuiziException;
 
@@ -34,4 +34,6 @@ public interface KuiziService {
     String getEmriKuizitByID(Long id) throws KuiziException;
 
     public  int [] countPergjigjenESakta(List<String> userPergjigje, List<PyetjaEntity> pyetjaEntities) throws KuiziException;
+
+    List<KuiziEntity> teGjithaNeBazeTeAdministratorit(String emriAdministratorit) throws KuiziException;
 }

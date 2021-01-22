@@ -15,9 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
@@ -68,15 +66,13 @@ public class HomeController {
     @RequestMapping("/test")
     public String f(Model model) throws PyetjaException {
 
-        model.addAttribute("kuizi",new KuiziEntity());
-
-        model.addAttribute("pyetjaKuiz",new PyetjaEntity());
+        model.addAttribute("kuizi", new KuiziEntity());
 
         return "form";
     }
 
-    @RequestMapping("/test/testTeDhenat")
-    public String f(@ModelAttribute("kuizi")KuiziEntity kuiziEntity, @RequestParam("question")List<String> pytjet, @RequestParam(value = "optionAName",defaultValue = "") List<String> opsionetA,
+    @PostMapping("/test/testTeDhenat")
+    public String f(@ModelAttribute("kuizi") KuiziEntity kuiziEntity, @RequestParam("question") List<String> pytjet, @RequestParam(value = "optionAName", defaultValue = "") List<String> opsionetA,
                     @RequestParam("optionBName") List<String> opsionetB,
                     @RequestParam("optionCName") List<String> opsionetC,
                     @RequestParam("optionDName") List<String> opsionetD,
@@ -84,21 +80,17 @@ public class HomeController {
                     @RequestParam("piketName") List<Integer> piket,HttpSession httpSession) throws PyetjaException, KuiziException {
 
 
-        PerdoruesiEntity perdoruesiEntity = new PerdoruesiEntity();
-        String emri = (String)httpSession.getAttribute("EmriAdminit");
+        String administatori = (String)httpSession.getAttribute("EmriAdminit");
 
-        System.out.println(emri);
-        perdoruesiEntity.setEmri(emri);
+        Date date = new Date(System.currentTimeMillis());
+        kuiziEntity.setDataKuizit(date);
+       kuiziEntity.setAdministatori(administatori);
 
-
-       Date date = new Date(System.currentTimeMillis());
-       kuiziEntity.setDataKuizit(date);
-      // kuiziEntity.setPerdoruesiEntity(perdoruesiEntity);
         kuiziService.save(kuiziEntity);
 
 
 
-        for(int i=0;i<pytjet.size();i++){
+        for (int i = 0; i < pytjet.size(); i++) {
             PyetjaEntity pyetjaEntity = new PyetjaEntity();
             pyetjaEntity.setEmriPyetjes(pytjet.get(i));
             pyetjaEntity.setOpsioniA(opsionetA.get(i));
@@ -116,4 +108,11 @@ public class HomeController {
 
 
     }
+
+    @RequestMapping("/testDiqka")
+    public String returnD(){
+
+        return "DashboardShtoKuiz";
+    }
+
 }

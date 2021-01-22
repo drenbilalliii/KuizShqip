@@ -43,7 +43,7 @@
                     <a class="nav-link" th:href="@{/loginAdmin}">Login</a>
                 </li>
                 <li class="nav-item" th:if="${session.EmriAdminit}">
-                    <a class="nav-link" th:href="@{/loginAdmin}">DashBoard</a>
+                    <a class="nav-link" th:href="@{/dashboardPage}">DashBoard</a>
                 </li>
             <li  class="nav-item" th:if="${session.EmriAdminit}">
                 <a class="nav-link" th:href="@{/logOut}">Sign Out</a>
@@ -140,7 +140,7 @@ luajtur ateherë për të bërë këtë punë më lehtë ne e kemi bërë që n�
         </button>
 
     </div>
-   
+
     <!-- Page Features -->
     <div class="row text-center">
 
@@ -179,7 +179,7 @@ e sotme">
 <!-- Page Features -->
 <div class="row text-center">
     <div class="col-lg-3 col-md-6 mb-4" th:each="kuizi : ${listaKuizSot}">
-        <div th:if="${listaKuizSot.size() < 0}">
+        <div th:if="${listaKuiz.isEmpty()}">
                 <div class="row justify-content-center">
             <div class="alert alert-danger" role="alert">
                 Nuk ka asnjë kuiz për ditën e sotshme !
@@ -194,7 +194,7 @@ e sotme">
             <div class="card-body">
                 <p class="card-text" th:text="${'Kategoria : ' + kuizi.getKategoria()}"> </p>
                 <p class="card-text" th:text="${'Data : ' + kuizi.getDataKuizit()}"> </p>
-<!--                <p class="card-text" th:text="${'Krijuar nga : ' + kuizi.getPerdoruesiEntity() +'i'}"> </p>-->
+                <p class="card-text" th:text="${'Krijuar nga : ' + kuizi.getAdministatori() +'i'}"> </p>
             </div>
             <div class="card-footer">
                 <a th:href="@{home/playQuiz/{id}(id=${kuizi.getKuiziId()})}" class="btn btn-outline-danger"><i class="fa fa-fw fa fa-play"></i>Fillo Kuizin</a>

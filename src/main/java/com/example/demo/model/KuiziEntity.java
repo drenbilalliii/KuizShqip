@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -26,9 +25,10 @@ public class KuiziEntity {
     @Basic
     @Column(name = "kategoria")
     private String kategoria;
-//    @JoinColumn(name = "perdoruesiId", referencedColumnName = "perdoruesiId")
-//    @ManyToOne(optional = true)
-//    private PerdoruesiEntity perdoruesiEntity;
+    @Basic
+    @Column(name = "Administratori")
+    private String administatori;
+
 
 
     public KuiziEntity() {
@@ -76,13 +76,13 @@ public class KuiziEntity {
     }
 
 
-//    public PerdoruesiEntity getPerdoruesiEntity() {
-//        return perdoruesiEntity;
-//    }
-//
-//    public void setPerdoruesiEntity(PerdoruesiEntity perdoruesiEntity) {
-//        this.perdoruesiEntity = perdoruesiEntity;
-//    }
+    public String getAdministatori() {
+        return administatori;
+    }
+
+    public void setAdministatori(String administatori) {
+        this.administatori = administatori;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -94,6 +94,7 @@ public class KuiziEntity {
                 Objects.equals(dataKuizit, that.dataKuizit) &&
                 Objects.equals(kategoria, that.kategoria);
     }
+
 
 
     @Override

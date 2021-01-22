@@ -4,6 +4,7 @@ import com.example.demo.exceptions.PyetjaException;
 import com.example.demo.model.KuiziEntity;
 import com.example.demo.model.PyetjaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -31,6 +32,11 @@ public interface PyetjaRepository extends JpaRepository<PyetjaEntity,Long> {
 
     @Query(value = "SELECT count(*) from Pyetja",nativeQuery = true)
     public Integer getNumrinEpyetjeve();
+
+    @Transactional
+    @Modifying
+    @Query(value = "delete  from Pyetja where KuiziID = ?1",nativeQuery = true)
+    public void deleteByKuiziID(Integer id);
 
 
 }

@@ -15,6 +15,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Dren Bilalli on 1/10/2021
@@ -43,21 +44,20 @@ public class KuiziServiceImplementation implements KuiziService {
 
     @Override
     public KuiziEntity save(KuiziEntity kuiziEntity) {
-
          return kuiziRepository.save(kuiziEntity);
     }
 
     @Override
-    public KuiziEntity find(Long id) throws KuiziException {
+    public KuiziEntity find(Integer id) throws KuiziException {
 
-        KuiziEntity kuiziEntity = kuiziRepository.getOne(id);
+        Optional<KuiziEntity> kuiziEntity = kuiziRepository.findById(id);
 
         if(kuiziEntity == null) {
             logger.error(id + " nuk gjendet");
             throw new KuiziException("Kuizi me id : " + id + " nuk u gjendet ne sistem!");
         }
 
-        return kuiziEntity;
+        return kuiziEntity.get();
     }
 
     @Override
@@ -67,9 +67,10 @@ public class KuiziServiceImplementation implements KuiziService {
     }
 
     @Override
-    public void delete(KuiziEntity kuiziEntity) {
+    public void delete(Integer kuiziID) {
 
-        //me vone
+        kuiziRepository.deleteByKuiziId(kuiziID);
+
     }
 
     @Override
@@ -158,10 +159,14 @@ public class KuiziServiceImplementation implements KuiziService {
 
     }
 
+    @Override
+    public List<KuiziEntity> teGjithaNeBazeTeAdministratorit(String emriAdministratorit) throws KuiziException {
+        return kuiziRepository.teGjithaNeBazeTeAdministratorit(emriAdministratorit);
+    }
+
 
     @Override
     public List<KuiziEntity> KaterRandomKuize() throws KuiziException {
-
         return kuiziEntityListFour;
     }
 

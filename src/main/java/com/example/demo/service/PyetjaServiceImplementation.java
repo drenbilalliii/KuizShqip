@@ -109,4 +109,9 @@ public class PyetjaServiceImplementation implements PyetjaService{
     public Integer getNumrinEpyetjeve() throws PyetjaException {
         return pyetjaRepository.getNumrinEpyetjeve();
     }
+
+    @Override
+    public void deleteByKuiziID(Integer id) throws PyetjaException {
+        pyetjaRepository.deleteByKuiziID(id);
+    }
 }

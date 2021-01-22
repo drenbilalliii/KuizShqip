@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Medieval Kahoot</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/styles/dashboardStyle.css}" />
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link th:href="@{/styles/shtoKuizinStyle.css}" rel="stylesheet">
+    <script th:src="@{/script/shtoKuizLogic.js}"></script>
+</head>
+<body>
+
+<div id="throbber" style="display:none; min-height:120px;"></div>
+<div id="noty-holder"></div>
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://bryanrojasq.wordpress.com">
+                <h3><i class="fa fa-lightbulb-o" aria-hidden="true"></i> 𝕸𝖊𝖉𝖎𝖊𝖛𝖆𝖑 𝕶𝖆𝖍𝖔𝖔𝖙</h3>
+            </a>
+        </div>
+        <!-- Top Menu Items -->
+        <ul class="nav navbar-right top-nav">
+            <li><a  data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Stats"><i class="fa fa-bar-chart-o"></i>
+            </a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin User <b class="fa fa-angle-down"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="fa fa-fw fa-user"></i> Edit Profile</a></li>
+                    <li><a href="#"><i class="fa fa-fw fa-cog"></i> Change Password</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="fa fa-fw fa-power-off"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li>
+                    <a th:href="@{/dashboardPage/kuizet}"><i class="fa fa-fw fa fa-question-circle"></i> Kuizi</a>
+                </li>
+                <li>
+                    <a th:href="@{/dashboardPage/administratoret}"><i class="fa fa-fw fa-user-plus"></i> Administratoret</a>
+                </li>
+                <li>
+                    <a th:href="@{/}"><i class="fa fa-sign-out"></i> Kthehu</a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="row" id="main" >
+                <div class="col-sm-12 col-md-12 well" id="content">
+                    <h1>Dren</h1>
+                </div>
+            </div>
+            <div class="container">
+                <div class="col-md-4">
+
+                    <form class="form-horizontal" id="myform" method="POST" th:action="@{/test/testTeDhenat}">
+                        <div class="form-group">
+                            <label for="kuizi">Emri i Kuzit</label>
+                            <input th:name="kuiziName" type="text" class="form-control" id="kuizi"  placeholder="Kuizi"></input>
+                            <label for="kategoria">Kategoria</label>
+                            <input th:name="kategoriaName"  type="text" class="form-control" id="kategoria"  placeholder="Kuizi"></input>
+                        </div>
+                        <div id="fielda">
+                            <div id="fielda0" >
+                                <!-- Text input-->
+                                <hr/>
+                                <div class="form-group">
+                                    <label for="question">Pyetja</label>
+                                    <textarea  th:name="question"  type="text" class="form-control" id="question"   placeholder="Shenonin Pyetjen" style="resize:vertical;" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="question1">OpsioniA</label>
+                                    <textarea  th:name="optionAName" type="text" class="form-control" id="question1" placeholder="Shenoni OpsioninA" style="resize:vertical;" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="question2">OpsioniB</label>
+                                    <textarea th:name="optionBName" type="text" class="form-control" id="question2"  placeholder="Shenoni OpsioninB" style="resize:vertical;" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="question3">OpsioniC</label>
+                                    <textarea th:name="optionCName" type="text" class="form-control" id="question3"  placeholder="Shenoni OpsioninC" style="resize:vertical;" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="question4">OpsioniD</label>
+                                    <textarea th:name="optionDName" type="text" class="form-control" id="question4"  placeholder="Shenoni OpsioninD" style="resize:vertical;" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="question5">Pergjigjja e Saket</label>
+                                    <textarea th:name="correctAnswerName" type="text"  class="form-control" id="question5" placeholder="Shenoni pergjijgjen e sakt" style="resize:vertical;" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="question6">Piket</label>
+                                    <input th:name="piketName" type="number" class="form-control" id="question6"  placeholder="Shenoni piket e pyetjes" required>
+                                    <hr/>
+                                </div>
+                            </div>
+                            <!--end field0-->
+                        </div>
+                        <!--end field-->
+                        <div class="form-group">
+                            <button id="add-more" name="add-more" class="btn btn-primary">Add More</button>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+</div>
+</div>
+</body>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+</script>
+</html>
+</html>

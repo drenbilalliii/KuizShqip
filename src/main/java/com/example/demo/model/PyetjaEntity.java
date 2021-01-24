@@ -11,7 +11,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "Pyetja")
-public class PyetjaEntity {
+public class PyetjaEntity extends Object{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

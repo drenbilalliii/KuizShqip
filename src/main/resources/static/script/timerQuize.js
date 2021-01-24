@@ -5,7 +5,7 @@ function checklength(i) {
     return i;
 }
 var minutes, seconds, count, counter, timer;
-count = 20; //seconds
+count = 60 * 5;
 counter = setInterval(timer, 1000);
 function timer() {
     'use strict';
@@ -16,9 +16,10 @@ function timer() {
         clearInterval(counter);
         return;
     }
-    document.getElementById("timer").innerHTML = 'Kuizi do te perfundoj mbrenda ' + minutes + ':' + seconds + ' minutave ! ';
+    // document.getElementById("timer").innerHTML = 'Kuizi do të përfundoj mbrenda ' + minutes + ':' + seconds + ' minutave !';
+    document.getElementById("timer").innerHTML =minutes + ':' + seconds;
     if (count === 0) {
         // location.reload();
-        document.getElementById("survey").submit();
+        document.getElementById("pyetjaForm").submit();
     }
 }

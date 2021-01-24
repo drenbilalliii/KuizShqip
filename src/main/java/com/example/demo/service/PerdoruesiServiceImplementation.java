@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -43,5 +44,15 @@ public class PerdoruesiServiceImplementation implements PerdoruesiService{
 
 
         return perdoruesiEntityList;
+    }
+
+    @Override
+    public boolean kontrolloALejohetQasja(HttpSession httpSession) {
+        return (httpSession.getAttribute("EmriAdminit") == null) ? true : false;
+    }
+
+    @Override
+    public Integer getNumrinAdministratoreve() {
+        return perdoruesiRepository.getNumrinAdministratoreve();
     }
 }

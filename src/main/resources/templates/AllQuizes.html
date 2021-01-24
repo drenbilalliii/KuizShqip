@@ -16,6 +16,11 @@
     <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        #adminKrijuar{
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
@@ -75,7 +80,7 @@
                 <div class="card-body">
                     <p class="card-text" th:text="${'Kategoria : ' + kuizi.getKategoria()}"> </p>
                     <p class="card-text" th:text="${'Data : ' + kuizi.getDataKuizit()}"> </p>
-                    <p class="card-text" th:text="${'Krijuar nga : ' + kuizi.getAdministatori() +'i'}"> </p>
+                    <p class="card-text" id="adminKrijuar" th:text="${'Krijuar nga : ' + kuizi.getAdministatori() +'i'}"> </p>
                 </div>
 
                 <div class="card-footer">

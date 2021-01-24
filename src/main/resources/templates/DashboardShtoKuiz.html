@@ -18,7 +18,6 @@
 <div id="wrapper">
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -36,7 +35,7 @@
             </a>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin User <b class="fa fa-angle-down"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" th:text="${EmriAdminit}"> <b class="fa fa-angle-down"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="#"><i class="fa fa-fw fa-user"></i> Edit Profile</a></li>
                     <li><a href="#"><i class="fa fa-fw fa-cog"></i> Change Password</a></li>
@@ -49,7 +48,10 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                 <li>
-                    <a th:href="@{/dashboardPage/kuizet}"><i class="fa fa-fw fa fa-question-circle"></i> Kuizi</a>
+                    <a th:href="@{/dashboardPage}"><i class="fa fa-fw fa fa-question-circle"></i>Dashboard</a>
+                </li>
+                <li>
+                    <a th:href="@{/dashboardPage/shtoKuiz}"><i class="fa fa-fw fa fa-question-circle"></i> Kuizi</a>
                 </li>
                 <li>
                     <a th:href="@{/dashboardPage/administratoret}"><i class="fa fa-fw fa-user-plus"></i> Administratoret</a>
@@ -68,18 +70,24 @@
             <!-- Page Heading -->
             <div class="row" id="main" >
                 <div class="col-sm-12 col-md-12 well" id="content">
-                    <h1>Dren</h1>
+                    <h1 th:text="${'Welcome ' + session.EmriAdminit}"></h1>
                 </div>
             </div>
             <div class="container">
                 <div class="col-md-4">
-
-                    <form class="form-horizontal" id="myform" method="POST" th:action="@{/test/testTeDhenat}">
+                    <form th:action="@{/dashboard/shtoKuizMagicWay}" th:method="POST">
+                        <div class="containerMagic">
+                    <label class="form-label" for="customFile">Shto Kuiz permes File-s</label>
+                    <input type="file" th:name="fileInput" class="form-control" id="customFile" />
+                        <button type="submit" class="btn btn-success">Shto</button>
+                        </div>
+                    </form>
+                    <form class="form-horizontal" id="myform" method="POST" th:action="@{/dashboard/shtoKuizAction}" th:object="${kuizi}">
                         <div class="form-group">
                             <label for="kuizi">Emri i Kuzit</label>
-                            <input th:name="kuiziName" type="text" class="form-control" id="kuizi"  placeholder="Kuizi"></input>
+                            <input th:name="kuiziName" th:field="*{emriKuizit}" type="text" class="form-control" id="kuizi"  placeholder="Kuizi"></input>
                             <label for="kategoria">Kategoria</label>
-                            <input th:name="kategoriaName"  type="text" class="form-control" id="kategoria"  placeholder="Kuizi"></input>
+                            <input th:name="kategoriaName" th:field="*{kategoria}" type="text" class="form-control" id="kategoria"  placeholder="Kuizi"></input>
                         </div>
                         <div id="fielda">
                             <div id="fielda0" >

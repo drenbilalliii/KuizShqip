@@ -4,6 +4,7 @@ import com.example.demo.exceptions.NashornException;
 import com.example.demo.model.JsPytjeEntity;
 import com.example.demo.repository.JsPytjeRepository;
 import com.example.demo.service.JsPytjeService;
+import com.example.demo.service.KuizeTeLuajturaService;
 import com.example.demo.service.NashornService;
 import com.example.demo.service.PyetjaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class NashornController {
     @Autowired
     private JsPytjeRepository jsPytjeRepository;
 
+    @Autowired
+    private KuizeTeLuajturaService kuizeTeLuajturaService;
+
 
     @GetMapping("home/playJSQuiz/{id}")
     public String returnJsQuestion(@PathVariable("id") Integer id, Model model) throws NashornException {
@@ -49,9 +53,10 @@ public class NashornController {
                                              @RequestParam("IDJS") String KuiziID,Model model,
                                              @RequestParam(value = "emriLojtarit",defaultValue = "Pa emer") String emriLojtarit) throws NoSuchMethodException, ScriptException, NashornException {
 
-
         int countPiket = 0;
         Integer IDKuiz = Integer.parseInt(KuiziID);
+
+        System.out.println(kodiJsText);
 
         List<JsPytjeEntity> jsPytjeEntityList = jsPytjeRepository.findAllByQuizID(IDKuiz);
         List<String> pergjigjet = new ArrayList<>();
@@ -65,8 +70,6 @@ public class NashornController {
             if(pergjigjet.get(i).equalsIgnoreCase(jsPytjeEntityList.get(i).getPergjigja())){
                 countPiket+=jsPytjeEntityList.get(i).getPiketPytjes();
             }
-
-
         }
 
         model.addAttribute("userPoints",countPiket);

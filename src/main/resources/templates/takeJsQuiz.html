@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script th:src="@{/script/timerQuize.js}"></script>
     <style>
         #label {
             margin-top: 50px ;
@@ -59,15 +60,17 @@
     </div>
 </nav>
 
-<form action="#" method="post" th:action="@{/jsQuiz/playerPoints}">
+
+<form th:action="@{/jsQuiz/playerPoints}"  th:method="post">
     <div class="container">
         <h1>Kuizi per JavaScript</h1>
         <div class="form-group" th:each="jsQuizEntity,iteracion : ${jsPytjeEntityList}">
             <label id="label" th:text="${iteracion.index + 1 + '. ' + jsQuizEntity.getKodi()}" ></label>
-            <textarea class="form-control" rows="10" name="KodiJSText"></textarea>
+            <textarea class="form-control" rows="10" th:name="KodiJSText"></textarea>
         </div>
         <input name="IDJS" type="hidden" th:value="${jsPytjeEntityList.get(0).getKuiziEntity()}">
         <input type="text" class="form-control" th:name="emriLojtarit" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Shkruaje Emrin">
+
         <button type="submit" class="btn btn-info">Run</button>
 
     </div>
@@ -78,7 +81,7 @@
 
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+        <p class="m-0 text-center text-white">Copyright &copy; Medieval Kahoot 2021</p>
     </div>
 </footer>
 

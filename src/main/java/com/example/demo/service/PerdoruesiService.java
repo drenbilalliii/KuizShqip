@@ -3,6 +3,8 @@ package com.example.demo.service;
 import com.example.demo.exceptions.PerdoruesiException;
 import com.example.demo.model.PerdoruesiEntity;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * author Gramos Shala
  */
@@ -10,5 +12,9 @@ import com.example.demo.model.PerdoruesiEntity;
 public interface PerdoruesiService {
 
     PerdoruesiEntity findByEmailAndPassword(String Username,String password) throws PerdoruesiException;
+
+    boolean kontrolloALejohetQasja(HttpSession httpSession);
+
+    public Integer getNumrinAdministratoreve();
 
 }

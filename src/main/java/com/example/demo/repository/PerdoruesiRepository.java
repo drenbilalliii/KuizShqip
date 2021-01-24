@@ -20,4 +20,7 @@ public interface PerdoruesiRepository extends JpaRepository<PerdoruesiEntity,Lon
 
     @Query(value = "SELECT  * FROM Perdoruesi where email =?1 and password =?2" ,nativeQuery = true)
     public PerdoruesiEntity findByEmailAndPassword(String username,String password) throws PerdoruesiException;
+
+    @Query(value = "select count(*) from Perdoruesi",nativeQuery = true)
+    public Integer getNumrinAdministratoreve();
 }

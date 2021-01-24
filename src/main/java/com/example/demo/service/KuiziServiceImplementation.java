@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.exceptions.KuiziException;
+import com.example.demo.model.JsPytjeEntity;
 import com.example.demo.model.KuiziEntity;
 import com.example.demo.model.PyetjaEntity;
 import com.example.demo.repository.KuiziRepository;
@@ -21,7 +22,7 @@ import java.util.Optional;
  * @author Dren Bilalli on 1/10/2021
  */
 @Service
-public class KuiziServiceImplementation implements KuiziService {
+public class KuiziServiceImplementation implements KuiziService{
 
 
     private static final Logger logger = LoggerFactory.getLogger(KuiziServiceImplementation.class); // per debbuging
@@ -169,7 +170,6 @@ public class KuiziServiceImplementation implements KuiziService {
     public List<KuiziEntity> KaterRandomKuize() throws KuiziException {
         return kuiziEntityListFour;
     }
-
 
 
 

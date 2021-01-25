@@ -10,6 +10,14 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link th:href="@{/styles/shtoKuizinStyle.css}" rel="stylesheet">
     <script th:src="@{/script/shtoKuizLogic.js}"></script>
+
+        <style>
+            #magicButton {
+                float: right !important;
+                margin-top: 5px !important;
+                margin-bottom: 10px !important;
+            }
+        </style>
 </head>
 <body>
 
@@ -79,9 +87,12 @@
                         <div class="containerMagic">
                     <label class="form-label" for="customFile">Shto Kuiz permes File-s</label>
                     <input type="file" th:name="fileInput" class="form-control" id="customFile" />
-                        <button type="submit" class="btn btn-success">Shto</button>
+                            <div class="form-group">
+                            <button class="btn btn-rounded btn-primary btn-sm" id="magicButton">Magic Way<i class="fas fa-magic pl-1"></i></button>
+                        </div>
                         </div>
                     </form>
+                    <br><br>
                     <form class="form-horizontal" id="myform" method="POST" th:action="@{/dashboard/shtoKuizAction}" th:object="${kuizi}">
                         <div class="form-group">
                             <label for="kuizi">Emri i Kuzit</label>

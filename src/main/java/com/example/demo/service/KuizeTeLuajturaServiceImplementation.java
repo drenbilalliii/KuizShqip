@@ -71,4 +71,9 @@ public class KuizeTeLuajturaServiceImplementation implements KuizeTeLuajturaServ
     public List<String> getKuizinMeTeLuajturin() throws KuiziException {
         return kuizeTeLuajturaRepository.getKuizinMeTeLuajturin();
     }
+
+    @Override
+    public void deleteByKuiziID(Integer id) {
+        kuizeTeLuajturaRepository.deleteByKuiziID(id);
+    }
 }

@@ -4,9 +4,11 @@ package com.example.demo.repository;
 
 import com.example.demo.model.KuizeteluajturaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -24,6 +26,11 @@ public interface KuizeTeLuajturaRepository extends JpaRepository<Kuizeteluajtura
             "having count(*) = (select max(NumriPerseritjes) from (select KuiziID,count(*)\n" +
             " as NumriPerseritjes from Kuizeteluajtura group by KuiziID)Kuizeteluajtura)",nativeQuery = true)
     public List<String> getKuizinMeTeLuajturin();
+
+    @Modifying
+    @Transactional
+    @Query(value = "delete from KuizeTeLuajtura where KuiziID =?1",nativeQuery = true)
+    public void deleteByKuiziID(Integer id);
 }
 
 

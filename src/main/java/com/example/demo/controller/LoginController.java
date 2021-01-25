@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,10 +25,11 @@ public class LoginController {
 
 
     @RequestMapping("/loginAdmin")
-    public String redirectToLogin() {
+    public ModelAndView redirectToLogin() {
 
+        ModelAndView modelAndView = new ModelAndView("signin");
 
-        return "signin";
+        return modelAndView;
     }
 
     @PostMapping("/tryToLogin")

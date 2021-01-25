@@ -29,3 +29,9 @@ html, body {
     .col-md-4 {
         width: 75.333333% !important;
     }}
+
+#magicButton {
+    float: right !important;
+    margin-top: 5px !important;
+    margin-bottom: 10px !important;
+}

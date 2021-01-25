@@ -15,7 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.io.File;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Date;
 import java.util.List;
 
@@ -25,7 +27,6 @@ import java.util.List;
 
 @Controller
 public class DashboardController {
-
 
 
     @Autowired
@@ -38,32 +39,31 @@ public class DashboardController {
     private PyetjaService pyetjaService;
 
 
-
-
     @RequestMapping("/dashboardPage")
     public String returnToDashboard(HttpSession httpSession, Model model) throws KuiziException {
 
-        if(httpSession.getAttribute("EmriAdminit") == null){
+        if (httpSession.getAttribute("EmriAdminit") == null) {
             return "redirect:/";
         }
-        String emriAdmin = (String)httpSession.getAttribute("EmriAdminit");
+        String emriAdmin = (String) httpSession.getAttribute("EmriAdminit");
         List<KuiziEntity> teGjitheKuizetByAdmin = kuiziService.teGjithaNeBazeTeAdministratorit(emriAdmin);
 
 
-        model.addAttribute("emriAdmin",emriAdmin);
-        model.addAttribute("teGjitheKuizetByAdmin",teGjitheKuizetByAdmin);
+        model.addAttribute("emriAdmin", emriAdmin);
+        model.addAttribute("teGjitheKuizetByAdmin", teGjitheKuizetByAdmin);
 
         return "Dashboard";
     }
 
     @RequestMapping("dashboardPage/deleteQuiz/{id}")
-    public String deleteQuiz(@PathVariable("id") Integer id,HttpSession httpSession) throws KuiziException, PyetjaException {
+    public String deleteQuiz(@PathVariable("id") Integer id, HttpSession httpSession) throws KuiziException, PyetjaException {
 
-        if(httpSession.getAttribute("EmriAdminit") == null){
+        if (httpSession.getAttribute("EmriAdminit") == null) {
             return "redirect:/";
         }
         //fshirja e referencave
         pyetjaService.deleteByKuiziID(id);
+        kuizeTeLuajturaService.deleteByKuiziID(id); //:( sorry kush e ka zan vendin e pare
 
         kuiziService.delete(id);
 
@@ -71,28 +71,28 @@ public class DashboardController {
     }
 
     @RequestMapping("/dashboardPage/shtoKuiz")
-    public String redirectToShtoKuiz(Model model,HttpSession httpSession){
+    public String redirectToShtoKuiz(Model model, HttpSession httpSession) {
 
 
-        if(httpSession.getAttribute("EmriAdminit") == null){
+        if (httpSession.getAttribute("EmriAdminit") == null) {
             return "redirect:/";
         }
 
-        model.addAttribute("kuizi",new KuiziEntity());
-        model.addAttribute("EmriAdminit",(String)httpSession.getAttribute("EmriAdminit"));
+        model.addAttribute("kuizi", new KuiziEntity());
+        model.addAttribute("EmriAdminit", (String) httpSession.getAttribute("EmriAdminit"));
         return "DashboardShtoKuiz";
     }
 
     @PostMapping("/dashboard/shtoKuizAction")
     public String shtoKuizThenRedirect(@ModelAttribute("kuizi") KuiziEntity kuiziEntity, @RequestParam("question") List<String> pytjet, @RequestParam(value = "optionAName", defaultValue = "") List<String> opsionetA,
-                    @RequestParam("optionBName") List<String> opsionetB,
-                    @RequestParam("optionCName") List<String> opsionetC,
-                    @RequestParam("optionDName") List<String> opsionetD,
-                    @RequestParam("correctAnswerName") List<String> pergjigjjet,
-                    @RequestParam("piketName") List<Integer> piket, HttpSession httpSession) throws PyetjaException, KuiziException {
+                                       @RequestParam("optionBName") List<String> opsionetB,
+                                       @RequestParam("optionCName") List<String> opsionetC,
+                                       @RequestParam("optionDName") List<String> opsionetD,
+                                       @RequestParam("correctAnswerName") List<String> pergjigjjet,
+                                       @RequestParam("piketName") List<Integer> piket, HttpSession httpSession) throws PyetjaException, KuiziException {
 
 
-        String administatori = (String)httpSession.getAttribute("EmriAdminit");
+        String administatori = (String) httpSession.getAttribute("EmriAdminit");
 
         Date date = new Date(System.currentTimeMillis());
         kuiziEntity.setDataKuizit(date);
@@ -101,9 +101,8 @@ public class DashboardController {
         kuiziService.save(kuiziEntity);
 
 
-
         for (int i = 0; i < pytjet.size(); i++) {
-            PyetjaEntity pyetjaEntity =  ModelFactory.getInstanceOfModel("PyetjaEntity");
+            PyetjaEntity pyetjaEntity = ModelFactory.getInstanceOfModel("PyetjaEntity");
             pyetjaEntity.setEmriPyetjes(pytjet.get(i));
             pyetjaEntity.setOpsioniA(opsionetA.get(i));
             pyetjaEntity.setOpsioniB(opsionetB.get(i));
@@ -120,14 +119,26 @@ public class DashboardController {
 
 
     }
-
-    @RequestMapping("/dashboard/shtoKuizMagicWay")
-    public String addFromFileMagicWay(@RequestParam("fileInput") File fileInput){
-
-
-
-
-
-        return "redirect:/dashboardPage/shtoKuiz";
-    }
 }
+
+//    @RequestMapping("/dashboard/shtoKuizMagicWay")
+//    public String addFromFileMagicWay(@RequestParam("fileInput") File fileInput) throws IOException {
+//
+//
+//        KuiziEntity kuiziEntity = ModelFactory.getInstanceOfModel("KuiziEntity");
+//        PyetjaEntity pyetjaEntity = ModelFactory.getInstanceOfModel("PyetjaEntity");
+//
+//
+//
+//
+//        String rreshtat = Files.readAllLines(Paths.get(fileInput.getAbsolutePath())).get(4);
+//
+//
+//        System.out.println(rreshtat);
+//
+//
+//
+//
+//        return "redirect:/dashboardPage/shtoKuiz";
+//    }
+//}

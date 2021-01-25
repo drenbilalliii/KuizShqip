@@ -4,6 +4,7 @@ import com.example.demo.exceptions.KuiziException;
 import com.example.demo.exceptions.PyetjaException;
 import com.example.demo.model.KuizeteluajturaEntity;
 import com.example.demo.model.KuiziEntity;
+import com.example.demo.model.ModelFactory;
 import com.example.demo.model.PyetjaEntity;
 import com.example.demo.service.KuizeTeLuajturaService;
 import com.example.demo.service.KuiziService;
@@ -64,8 +65,8 @@ public class QuizHandlerController {
 
         int saPersonaMbrapa = kuizeTeLuajturaService.countSaNjerzKanMePakPike(IDQuiz,countPiket);
 
-        KuizeteluajturaEntity kuizeTeLuajturaEntity = new KuizeteluajturaEntity();
-      kuizeTeLuajturaEntity.setLojetari(emriLojtarit);
+        KuizeteluajturaEntity kuizeTeLuajturaEntity = ModelFactory.getInstanceOfModel("KuizeteluajtuaraEntity");
+        kuizeTeLuajturaEntity.setLojetari(emriLojtarit);
       KuiziEntity kuiziEntityID = new KuiziEntity();
       kuiziEntityID.setKuiziId(IDQuiz);
       kuizeTeLuajturaEntity.setKuiziEntity(kuiziEntityID);

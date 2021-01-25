@@ -21,6 +21,8 @@ public interface KuizeTeLuajturaService {
     Integer countSaNjerzKanMePakPike(Integer kuiziID,Integer pike) throws KuiziException;
 
     public List<String> getKuizinMeTeLuajturin() throws KuiziException;
+
+    public void deleteByKuiziID(Integer id);
 }
 
 

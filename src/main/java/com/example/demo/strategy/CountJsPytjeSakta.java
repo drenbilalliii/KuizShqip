@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,13 +24,14 @@ public class CountJsPytjeSakta implements StrategyForQuizHandling{
 
 
     @Override
-    public int[] numeroPiketDhePytjetSakta(List<String> userPergjigje, Long KuiziID) {
+    public int[] numeroPiketDhePytjetSakta(List<String> userPergjigje, Integer KuiziID) {
 
         int countPiket = 0;
         int countPergjigjetSakta = 0;
+        List<JsPytjeEntity> listaMePytje = new ArrayList<>();
 
         try {
-            List<JsPytjeEntity> listaMePytje = jsPytjeService.findByQuizID(KuiziID);
+           listaMePytje = jsPytjeService.findByQuizID(KuiziID);
             if(listaMePytje == null){
                 throw new NashornException("KU JE :(");
             }
@@ -44,7 +46,7 @@ public class CountJsPytjeSakta implements StrategyForQuizHandling{
             e.printStackTrace();
         }
 
-        return new int[]{countPiket, countPergjigjetSakta};
+        return new int[]{countPiket, countPergjigjetSakta,listaMePytje.size()};
     }
 
 }

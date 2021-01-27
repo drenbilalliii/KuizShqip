@@ -20,10 +20,10 @@ public class ContextPerStrategy {
 //    }
 
     public void setStrategyForQuizHandling(StrategyForQuizHandling strategyForQuizHandling) {
-        this.strategyForQuizHandling = strategyForQuizHandling;
+        this.strategyForQuizHandling = strategyForQuizHandling; //nullPointerException bre...
     }
 
-    public int [] numeroPiketDhePytjetSakta(List<String> userPergjigje, Long KuiziID){
+    public int [] numeroPiketDhePytjetSakta(List<String> userPergjigje, Integer KuiziID){
         return this.strategyForQuizHandling.numeroPiketDhePytjetSakta(userPergjigje,KuiziID);
     }
 }

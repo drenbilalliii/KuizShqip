@@ -34,8 +34,7 @@ public class NashornController {
     @Autowired
     private NashornService nashornService;
 
-    @Autowired
-    private JsPytjeRepository jsPytjeRepository;
+
 
     @Autowired
     private KuizeTeLuajturaService kuizeTeLuajturaService;
@@ -45,7 +44,7 @@ public class NashornController {
 
 
     @GetMapping("home/playJSQuiz/{id}")
-    public String returnJsQuestion(@PathVariable("id") Long id, Model model) throws NashornException {
+    public String returnJsQuestion(@PathVariable("id") Integer id, Model model) throws NashornException {
 
         List<JsPytjeEntity> jsPytjeEntityList = jsPytjeService.findByQuizID(id);
 
@@ -92,9 +91,9 @@ public class NashornController {
                                          @RequestParam(value = "emriLojtarit",defaultValue = "Pa emer") String emriLojtarit) throws NoSuchMethodException, ScriptException, NashornException {
 
 
-    Long IDKuiz = Long.parseLong(KuiziID);
+    Integer IDKuiz = Integer.parseInt(KuiziID);
 
-    List<JsPytjeEntity> jsPytjeEntityList = jsPytjeRepository.findAllByQuizID(IDKuiz);
+    List<JsPytjeEntity> jsPytjeEntityList = jsPytjeService.findByQuizID(IDKuiz);
     List<String> pergjigjet = new ArrayList<>();
 
 
@@ -107,7 +106,8 @@ public class NashornController {
 
 
 
-    model.addAttribute("userPoints",rezultati[1]);
+    model.addAttribute("userPoints",rezultati[0]);
+    model.addAttribute("pergjigjetSakta",rezultati[1]);
     model.addAttribute("playerName",emriLojtarit);
 
 

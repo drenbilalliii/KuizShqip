@@ -23,7 +23,7 @@ public interface PyetjaService {
 
     void delete(PyetjaEntity pyetjaEntity) throws PyetjaException;
 
-    List<PyetjaEntity> findAllByQuizID(Long id) throws PyetjaException;
+    List<PyetjaEntity> findAllByQuizID(Integer id) throws PyetjaException;
 
     List<PyetjaEntity> findAllPergjigjetByQuizID(Integer id) throws PyetjaException;
 

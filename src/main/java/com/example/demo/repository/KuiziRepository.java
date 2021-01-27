@@ -38,11 +38,11 @@ public interface KuiziRepository extends JpaRepository<KuiziEntity,Integer> {
     @Query(value = "select * from Kuizi where  not Kategoria = 'Java Script'",nativeQuery = true)
     public List<KuiziEntity> findAll();
 
-    @Query(value = "select  TOP 4 * from Kuizi where datakuizit = :datakrijimit ",nativeQuery = true)
+    @Query(value = "select  TOP 4 * from Kuizi where datakuizit = :datakrijimit ORDER BY KuiziID DESC ",nativeQuery = true)
     public List<KuiziEntity> findByDataSotshme(@Param("datakrijimit") LocalDate datakrijimit);
 
     @Query(value = "select emri_kuizit from Kuizi where KuiziID = :numriID",nativeQuery = true)
-    public String getEmriKuizitByID(@Param("numriID") Long id);
+    public String getEmriKuizitByID(@Param("numriID") Integer id);
 
     @Query(value = "select * from Kuizi where Administratori =?1",nativeQuery = true)
     public List<KuiziEntity> teGjithaNeBazeTeAdministratorit(String administratori);

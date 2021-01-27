@@ -31,7 +31,7 @@ public interface KuiziService {
 
     List<KuiziEntity> katerKuizetEDatesSotshme() throws KuiziException, ParseException;
 
-    String getEmriKuizitByID(Long id) throws KuiziException;
+    String getEmriKuizitByID(Integer id) throws KuiziException;
 
     public  int [] countPergjigjenESakta(List<String> userPergjigje, List<PyetjaEntity> pyetjaEntities) throws KuiziException;
 

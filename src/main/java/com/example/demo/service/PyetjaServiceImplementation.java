@@ -68,7 +68,7 @@ public class PyetjaServiceImplementation implements PyetjaService{
     }
 
     @Override
-    public List<PyetjaEntity> findAllByQuizID(Long id) throws PyetjaException {
+    public List<PyetjaEntity> findAllByQuizID(Integer id) throws PyetjaException {
         List<PyetjaEntity> pyetjaEntityList;
 
         pyetjaEntityList = pyetjaRepository.findAllByQuizID(id);

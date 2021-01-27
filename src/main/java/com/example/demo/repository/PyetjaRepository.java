@@ -19,7 +19,7 @@ public interface PyetjaRepository extends JpaRepository<PyetjaEntity,Long> {
     <S extends PyetjaEntity> S save(S s);
 
     @Query(value = "select * from Pyetja where KuiziID = ?1",nativeQuery = true)
-    public List<PyetjaEntity> findAllByQuizID(Long id) throws PyetjaException;
+    public List<PyetjaEntity> findAllByQuizID(Integer id) throws PyetjaException;
 
     @Query(value = "select * from Pyetja p where KuiziID = ?1",nativeQuery = true)
     public List<PyetjaEntity> findAllPergjigjetByQuizID(Integer id) throws PyetjaException;

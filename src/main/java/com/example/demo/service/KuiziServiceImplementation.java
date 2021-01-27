@@ -139,7 +139,7 @@ public class KuiziServiceImplementation implements KuiziService{
     }
 
     @Override
-    public String getEmriKuizitByID(Long id) throws KuiziException {
+    public String getEmriKuizitByID(Integer id) throws KuiziException {
         return kuiziRepository.getEmriKuizitByID(id);
     }
 

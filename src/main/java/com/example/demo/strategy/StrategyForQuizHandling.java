@@ -11,6 +11,7 @@ import java.util.List;
 public interface StrategyForQuizHandling {
 
 
-    public  int [] numeroPiketDhePytjetSakta(List<String> userPergjigje,Long KuiziID);
+    public  int [] numeroPiketDhePytjetSakta(List<String> userPergjigje,Integer KuiziID);
+
 
 }

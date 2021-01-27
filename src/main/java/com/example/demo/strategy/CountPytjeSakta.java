@@ -6,6 +6,7 @@ import com.example.demo.service.PyetjaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,13 +22,14 @@ public class CountPytjeSakta implements StrategyForQuizHandling {
 
 
     @Override
-    public int[] numeroPiketDhePytjetSakta(List<String> userPergjigje, Long KuiziID) {
+    public int[] numeroPiketDhePytjetSakta(List<String> userPergjigje, Integer KuiziID) {
 
         int countPiket = 0;
         int countPergjigjetSakta = 0;
+        List<PyetjaEntity> listaMePytje = new ArrayList<>();
 
         try {
-            List<PyetjaEntity> listaMePytje = pyetjaService.findAllByQuizID(KuiziID);
+             listaMePytje = pyetjaService.findAllByQuizID(KuiziID);
 
             for (int i = 0; i < userPergjigje.size(); i++) {
                 if (userPergjigje.get(i).equalsIgnoreCase(listaMePytje.get(i).getOpsioniSakt())) {
@@ -40,7 +42,7 @@ public class CountPytjeSakta implements StrategyForQuizHandling {
             e.printStackTrace();
         }
 
-        return new int[]{countPiket, countPergjigjetSakta};
+        return new int[]{countPiket, countPergjigjetSakta,listaMePytje.size()};
     }
 
 }

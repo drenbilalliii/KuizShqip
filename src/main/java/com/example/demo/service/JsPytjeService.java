@@ -20,6 +20,6 @@ public interface JsPytjeService {
 
     List<String> findByPergjigja() throws NashornException;
 
-    List<JsPytjeEntity> findByQuizID(Long id) throws NashornException;
+    List<JsPytjeEntity> findByQuizID(Integer id) throws NashornException;
 }
 

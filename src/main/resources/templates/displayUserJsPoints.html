@@ -5,18 +5,30 @@
     <title>User Points</title>
     <link rel="stylesheet" th:href="@{/styles/jsStylePoints.css}">
 
+    <style>
+
+        #teSaktaPytje{
+            color: rgb(66, 135, 245);
+        }
+        #points{
+
+            color: rgb(66, 135, 245);
+        }
+    </style>
 </head>
 <body>
-
 <div class="loader">
     <div class="loader-bg">
         <span th:text="${playerName}"></span>
     </div>
-    <h1 th:text="${'Ju keni ' + userPoints + ' pike'}"></h1>
+
+
     <div class="drops">
         <div class="drop1"></div>
         <div class="drop2"></div>
     </div>
+    <h1 id="points" th:text="${'Ju keni ' + userPoints + ' pike'}"></h1>
+    <h2 id="teSaktaPytje" th:text="${pergjigjetSakta +'/' + pytjetList}"></h2>
 </div>
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
     <defs>

@@ -43,7 +43,7 @@ public class HomeController {
     private PerdoruesiService perdoruesiService;
 
 
-    @RequestMapping("/")
+    @RequestMapping(value = "/")
     public String redirectToHome(Model model) throws KuiziException, PyetjaException, ParseException {
 
         List<KuiziEntity> listKuizEntity = kuiziService.KaterRandomKuize();

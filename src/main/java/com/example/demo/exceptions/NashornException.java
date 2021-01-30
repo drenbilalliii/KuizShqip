@@ -1,5 +1,6 @@
 package com.example.demo.exceptions;
 
+
 /**
  * @author Dren Bilalli on 1/12/2021
  */

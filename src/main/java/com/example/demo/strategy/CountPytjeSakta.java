@@ -27,21 +27,17 @@ public class CountPytjeSakta implements StrategyForQuizHandling {
         int countPiket = 0;
         int countPergjigjetSakta = 0;
         List<PyetjaEntity> listaMePytje = new ArrayList<>();
-
         try {
              listaMePytje = pyetjaService.findAllByQuizID(KuiziID);
-
             for (int i = 0; i < userPergjigje.size(); i++) {
                 if (userPergjigje.get(i).equalsIgnoreCase(listaMePytje.get(i).getOpsioniSakt())) {
                     countPiket += listaMePytje.get(i).getPiket();
                     countPergjigjetSakta++;
                 }
             }
-
         } catch (PyetjaException e) {
             e.printStackTrace();
         }
-
         return new int[]{countPiket, countPergjigjetSakta,listaMePytje.size()};
     }
 

@@ -28,6 +28,7 @@ public class KuiziServiceImplementation implements KuiziService{
     private static final Logger logger = LoggerFactory.getLogger(KuiziServiceImplementation.class); // per debbuging
 
     private KuiziRepository kuiziRepository;
+
     private List<KuiziEntity> kuiziEntityListFour = new ArrayList<>();
 
     @Autowired

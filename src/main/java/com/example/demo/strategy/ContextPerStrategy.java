@@ -16,7 +16,7 @@ public class ContextPerStrategy {
 
 
 //    public ContextPerStrategy(StrategyForQuizHandling strategyForQuizHandling) {
-//        this.strategyForQuizHandling = strategyForQuizHandling; //JOO JO JO JO JO JO
+//        this.strategyForQuizHandling = strategyForQuizHandling;
 //    }
 
     public void setStrategyForQuizHandling(StrategyForQuizHandling strategyForQuizHandling) {

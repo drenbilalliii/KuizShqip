@@ -108,6 +108,7 @@ public class NashornController {
 
     model.addAttribute("userPoints",rezultati[0]);
     model.addAttribute("pergjigjetSakta",rezultati[1]);
+    model.addAttribute("pytjetList",rezultati[2]);
     model.addAttribute("playerName",emriLojtarit);
 
 
